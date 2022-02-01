@@ -7,3 +7,5 @@ function Level1(){
         </div>
     )
 }
+
+export default Level1;
