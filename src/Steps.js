@@ -75,7 +75,68 @@ const Steps = (props) => {
     const[toggle, setToggle] = useState(true);
 
     function changeStep(newValue) {
-        if (props.contents.length > 0){
+        if (props.contents.length > 0) {
+
+
+            if (newValue < index1 && newValue >= 0) {
+
+                setIndex1(newValue);
+                setStep(props.contents[index3][index2][newValue]);
+                setData(data => [...props.contents[index3][1]])
+                setToggle(false);
+                return;
+
+
+            }
+            else if (newValue < index1 && newValue < 0) {
+                console.log('in negative ')
+                setIndex3(index3 - 1)
+                setIndex1(props.contents[index3 - 1][index2].length - 1)
+                setToggle(false);
+
+                setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
+                setData(data => [...props.contents[index3 - 1][1]])
+                return;
+
+
+            }
+
+            if (index3 === props.contents.length - 1 && index1 === props.contents[index3][index2].length - 1) {
+                console.log('in reset')
+                setIndex1(0);
+                setIndex3(0);
+                setStep(props.contents[0][index2][0]);
+                setData(data => [...props.contents[0][1]])
+                setToggle(true);
+
+
+            }
+            else if (index1 === props.contents[index3][index2].length - 1) {
+                setIndex1(0);
+                setIndex3(index3 + 1);
+                setStep(props.contents[index3 + 1][index2][0]);
+                setData(data => [...props.contents[index3 + 1][1]]);
+                setToggle(true);
+                
+            }
+            else {
+
+                setStep(props.contents[index3][index2][newValue]);
+                setToggle(false);
+
+                if(newValue===0)
+                {
+                        setData(data => [...props.contents[index3][1]])
+                        setToggle(true);
+
+                }
+             
+
+            }
+
+
+
+
 
         }
 
