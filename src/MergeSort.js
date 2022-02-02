@@ -5,8 +5,6 @@ export function mergeSortingAlgo(unsortedArray){
 
     let branch=[];
 
-
-
         function merge(left, right)
         {
             let sorted=[];
