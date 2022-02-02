@@ -40,15 +40,22 @@ const Numbers = (props) =>{
                         )
 
                     }
+                    else {
+                     
+                       
+                        return (
 
-                    else
-                    {
-                        return <div></div> // gabor enter here
+                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>
+                                
+                                <motion.div
+                                    initial={{opacity:props.toggle?0.0:1.0}}
+                                    animate={{ opacity: 1.0 }}  
+                                    transition={{ ease: "easeIn", duration: 1.0, delay:index/3 }}>{element.join(', ')}</motion.div></div>
+                        )
+
                     }
-                
 
                    
-
 
                 })
             }
