@@ -7,11 +7,6 @@ export function mergeSortingAlgo(unsortedArray) {
   function merge(left, right) {
     let sorted = [];
 
-<<<<<<< HEAD
-        function merge(left, right)
-        {
-            let sorted=[];
-=======
     let holder = [];
     let data = [];
 
@@ -19,7 +14,6 @@ export function mergeSortingAlgo(unsortedArray) {
 
     holder.push(mergeStep1);
     data.push([[...left], [...right]]);
->>>>>>> 36fb70ccbe760026db40a3e4ab96f789f0fe9555
 
     let mergeStep2 = "Compare the first element of both arrays. ";
 
