@@ -144,4 +144,51 @@ const Steps = (props) => {
             setStep("byebye")
         }
     }
+
+
+    return (
+
+        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px' }}>
+            <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
+
+                <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
+                <button onClick={() => { changeStep(index1 + 1) }}>Next Step</button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', margin: '15px' }} >
+                <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
+                    <div style={{width:'500px'}}>{step}</div>
+                    <div>
+                         <Numbers data={data}  toggle={toggle} ></Numbers>
+
+                    </div>
+               
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    )
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+export default Steps;

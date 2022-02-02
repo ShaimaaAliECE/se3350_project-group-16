@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import {mergeSortingAlgo} from  './MergeSort';
+import  Steps from './Steps';
 
 function Level1(){
 
