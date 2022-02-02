@@ -15,7 +15,6 @@ const Home = ()=>
                      <Level1/>
            </div>
            
-
         </div>
 
     );
