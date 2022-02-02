@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import React, { useEffect, useState } from 'react';
 
 
@@ -6,9 +7,9 @@ import nextId from "react-id-generator";
 
 
 
-const Numbers = (props) =>{
 
-     
+const Numbers = (props) => {
+    
     return (
  
         <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', }}>
@@ -57,6 +58,7 @@ const Numbers = (props) =>{
 
                    
 
+
                 })
             }
         </div>
@@ -64,6 +66,7 @@ const Numbers = (props) =>{
 
 
 }
+
 
 const Steps = (props) => {
 
@@ -73,8 +76,16 @@ const Steps = (props) => {
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
     const[toggle, setToggle] = useState(true);
+   
+  
+
+
+
 
     function changeStep(newValue) {
+        setIndex1(newValue)
+
+
         if (props.contents.length > 0) {
 
 
@@ -139,12 +150,11 @@ const Steps = (props) => {
 
 
         }
-
         else {
             setStep("byebye")
         }
-    }
 
+    }
 
     return (
 
@@ -183,11 +193,6 @@ const Steps = (props) => {
 
 
 }
-
-
-
-
-
 
 
 
