@@ -40,15 +40,22 @@ const Numbers = (props) =>{
                         )
 
                     }
+                    else {
+                     
+                       
+                        return (
 
-                    else
-                    {
-                        return <div></div> // gabor enter here
+                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>
+                                
+                                <motion.div
+                                    initial={{opacity:props.toggle?0.0:1.0}}
+                                    animate={{ opacity: 1.0 }}  
+                                    transition={{ ease: "easeIn", duration: 1.0, delay:index/3 }}>{element.join(', ')}</motion.div></div>
+                        )
+
                     }
-                
 
                    
-
 
                 })
             }
@@ -56,4 +63,24 @@ const Numbers = (props) =>{
     )
 
 
+}
+
+const Steps = (props) => {
+
+    const [index1, setIndex1] = useState(-1);
+    const [index2, setIndex2] = useState(0);
+    const [index3, setIndex3] = useState(0);
+    const [step, setStep] = useState('');
+    const [data, setData] = useState([]);
+    const[toggle, setToggle] = useState(true);
+
+    function changeStep(newValue) {
+        if (props.contents.length > 0){
+
+        }
+
+        else {
+            setStep("byebye")
+        }
+    }
 }

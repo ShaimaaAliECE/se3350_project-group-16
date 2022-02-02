@@ -29,8 +29,6 @@ function Level1(){
 
         setSort(info[0]);
        
-     
-
     }
 
     return(
