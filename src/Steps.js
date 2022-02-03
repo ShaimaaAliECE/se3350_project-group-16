@@ -75,7 +75,7 @@ const Steps = (props) => {
     const [index3, setIndex3] = useState(0);
     const [step, setStep] = useState('');
     const [data, setData] = useState([]);
-    const[toggle, setToggle] = useState(true);
+    const[toggleNum, setToggleNum] = useState(true);
    
   
 
@@ -94,7 +94,7 @@ const Steps = (props) => {
                 setIndex1(newValue);
                 setStep(props.contents[index3][index2][newValue]);
                 setData(data => [...props.contents[index3][1]])
-                setToggle(false);
+                setToggleNum(false);
                 return;
 
 
@@ -103,7 +103,7 @@ const Steps = (props) => {
                 console.log('in negative ')
                 setIndex3(index3 - 1)
                 setIndex1(props.contents[index3 - 1][index2].length - 1)
-                setToggle(false);
+                setToggleNum(false);
 
                 setStep(props.contents[index3 - 1][index2][props.contents[index3-1][index2].length - 1]);
                 setData(data => [...props.contents[index3 - 1][1]])
@@ -112,13 +112,14 @@ const Steps = (props) => {
 
             }
 
-            if (index3 === props.contents.length - 1 && index1 === props.contents[index3][index2].length - 1) {
+            if (index3 === props.contents.length-1 && index1 === props.contents[index3][index2].length - 1) {
                 console.log('in reset')
-                setIndex1(0);
+                setIndex1(-1);
                 setIndex3(0);
-                setStep(props.contents[0][index2][0]);
-                setData(data => [...props.contents[0][1]])
-                setToggle(true);
+                setStep('');
+                setData([])
+                setToggleNum(true);
+                props.resetGen();
 
 
             }
@@ -127,18 +128,18 @@ const Steps = (props) => {
                 setIndex3(index3 + 1);
                 setStep(props.contents[index3 + 1][index2][0]);
                 setData(data => [...props.contents[index3 + 1][1]]);
-                setToggle(true);
+                setToggleNum(true);
                 
             }
             else {
 
                 setStep(props.contents[index3][index2][newValue]);
-                setToggle(false);
+                setToggleNum(false);
 
                 if(newValue===0)
                 {
                         setData(data => [...props.contents[index3][1]])
-                        setToggle(true);
+                        setToggleNum(true);
 
                 }
              
@@ -151,7 +152,7 @@ const Steps = (props) => {
 
         }
         else {
-            setStep("byebye")
+            setStep("error")
         }
 
     }
@@ -162,14 +163,14 @@ const Steps = (props) => {
             <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
 
                 <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index1 + 1) }}>Next Step</button>
+                <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
             </div>
 
             <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', margin: '15px' }} >
                 <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
                     <div style={{width:'500px'}}>{step}</div>
                     <div>
-                         <Numbers data={data}  toggle={toggle} ></Numbers>
+                         <Numbers data={data}  toggle={toggleNum} ></Numbers>
 
                     </div>
                

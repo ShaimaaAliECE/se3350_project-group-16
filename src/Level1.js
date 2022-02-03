@@ -6,10 +6,11 @@ import  Steps from './Steps';
 function Level1(){
 
 
-
     const[sort, setSort]=useState([]);
     const [unsort, setUnSort] = useState([]);
     const[branch, setBranch]  = useState([]);
+    const [generate, setGenerate] = useState(false);
+    const [toggleStep, setStep] = useState(true);
 
 
     function startSort()
@@ -32,12 +33,30 @@ function Level1(){
        
     }
 
+
+    function  resetGenerate()
+    {
+        setGenerate(false);
+        setSort([]);
+        setUnSort([]);
+        setStep(true);
+    }
+
+
+    function intitiate()
+    {
+        startSort();
+        setGenerate(true);
+        setStep(false);
+
+    }
+
     return(
         <div style={{ display:'flex', flexDirection:'column', height:'100%', justifyContent:'center', margin:'20px'}}>
 
             <div style={{display: 'flex', flexDirection:'row', margin:'15px', justifyContent:'space-between'}}>
                 <div style={{fontSize:'20px', fontWeight:'bold'}}>Level 1</div>
-                <button onClick={startSort}>Generate  Numbers</button>
+                <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
             <div style={{display:"flex", flexDirection:'row', justifyContent:'center', margin:'15px'}}>
@@ -64,7 +83,7 @@ function Level1(){
                 </div>
             </div>
             </div>
-             <Steps contents={branch}></Steps> 
+             <Steps contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps> 
         </div>
     )
 }

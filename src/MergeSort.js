@@ -36,7 +36,7 @@ export function mergeSortingAlgo(unsortedArray) {
       } else {
         let mergeStep3 =
           right[0] +
-          " is less than " +
+          " is less than or equal to " +
           left[0] +
           " push " +
           right[0] +
