@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import {mergeSortingAlgo} from  './MergeSort';
+import './Level1.css';
 import  Steps from './Steps';
 
 function Level1(){
@@ -52,18 +53,18 @@ function Level1(){
     }
 
     return(
-        <div style={{ display:'flex', flexDirection:'column', height:'100%', justifyContent:'center', margin:'20px'}}>
+        <div className="columnLarge">
 
-            <div style={{display: 'flex', flexDirection:'row', margin:'15px', justifyContent:'space-between'}}>
-                <div style={{fontSize:'20px', fontWeight:'bold'}}>Level 1</div>
+            <div className="row">
+                <div className="boldFont">Level 1</div>
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
-            <div style={{display:"flex", flexDirection:'row', justifyContent:'center', margin:'15px'}}>
+            <div className = "row">
                 
-            <div style={{display:"flex", flexDirection:'column', justifyContent:'center', margin:'15px'}}>
+            <div className = "columnSmall">
 
-                <div style={{display:"flex", flexDirection:'row', justifyContent:'center', border: '1px solid green'}}>
+                <div className="greenBorder">
                     {unsort.map((element)=>{
                         return(
                             <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' ,}}  > {element} </div>
@@ -73,7 +74,7 @@ function Level1(){
                 </div>
 
 
-                <div style={{display:"flex", flexDirection:'row', justifyContent:'center', border: '1px solid green', marginTop:'10px'}}>
+                <div className = "greenBorderWMargin">
                     {sort.map((element)=>{
                         return(
                             <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' ,}}  > {element} </div>
