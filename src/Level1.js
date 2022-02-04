@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {mergeSortingAlgo} from  './MergeSort';
 import  Steps from './Steps';
 
-function Level1(){
+const Level1 = (props)=>{
 
 
     const[sort, setSort]=useState([]);
@@ -40,6 +40,7 @@ function Level1(){
         setSort([]);
         setUnSort([]);
         setStep(true);
+        props.goToNext(2);
     }
 
 

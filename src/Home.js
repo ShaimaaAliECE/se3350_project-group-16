@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import './Home.css';
 import Level1 from './Level1';
+import Level2 from './Level2'
 
 
 
@@ -14,8 +15,20 @@ const Home = ()=>
 
 
 
-    function nextLevel()
+    function nextLevel(level)
     {
+        if(level===1)
+        {
+            setOne(true);
+            setTwo(false);
+            setThree(false)
+        }
+        else if(level===2)
+        {
+            setOne(false);
+            setTwo(true);
+            setThree(false);
+        }
 
     }
 
@@ -28,12 +41,12 @@ const Home = ()=>
         <div className="sorting-tutor">
            <div className="title">Welcome To The Sorting Tutor</div>
            <div name="body">
-                     <Level1/>
-                     <div>
+               
+                   
+                         {levelOne&&<Level1 goToNext={nextLevel}/>}
+                         {levelTwo&&<Level2/>}
                          {}
-                         {}
-                         {}
-                     </div>
+                     
            </div>
            
         </div>
