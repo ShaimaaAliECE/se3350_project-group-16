@@ -54,36 +54,36 @@ const Level1 = (props)=>{
     }
 
     return(
-        <div className="columnLarge">
+        <div className="level-container">
 
-            <div className="row">
-                <div className="boldFont">Level 1</div>
+            <div className="header">
+                <div >Level 1</div>
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
-            <div className = "row">
+      
                 
-            <div className = "columnSmall">
+            <div className = "array-container">
 
-                <div className="greenBorder">
+                <div className="array-layout">
                     {unsort.map((element)=>{
                         return(
-                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' ,}}  > {element} </div>
+                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
 
                 </div>
 
 
-                <div className = "greenBorderWMargin">
+                <div className = "array-layout">
                     {sort.map((element)=>{
                         return(
-                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' ,}}  > {element} </div>
+                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
 
                 </div>
-            </div>
+      
             </div>
              <Steps contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps> 
         </div>
