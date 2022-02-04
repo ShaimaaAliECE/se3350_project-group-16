@@ -1,0 +1,41 @@
+.columnLarge{
+    display:'flex';
+    flexDirection:'column';
+    height:'100%';
+    justifyContent:'center';
+    margin:'20px'
+}
+.columnSmall{
+    display:'flex';
+    flexDirection:'column';
+    height:'100%';
+    justifyContent:'center';
+    margin:'15px'
+}
+
+.row{
+    display: 'flex';
+    flexDirection:'row';
+    margin:'15px';
+    justifyContent:'space-between'
+}
+
+.boldFont{
+    fontSize:'20px';
+    fontWeight:'bold'
+}
+
+.greenBorder{
+    display:"flex"; 
+    flexDirection:'row';
+    justifyContent:'center';
+    border: '1px solid green'
+}
+
+.greenBorderWMargin{ 
+    display:"flex"; 
+    flexDirection:'row';
+    justifyContent:'center';
+    border: '1px solid green'
+
+}
