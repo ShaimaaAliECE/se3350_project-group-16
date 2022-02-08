@@ -67,22 +67,26 @@ const Level1 = (props)=>{
 
                 <div className="array-layout">
                    
+                   <div className='array-nums'>
                     {unsort.map((element)=>{
                         return(
                             <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
+                    </div>
                  
 
                 </div>
 
 
                 <div className = "array-layout">
+                    <div className='array-nums'>
                     {sort.map((element)=>{
                         return(
                             <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
+                    </div>
 
                 </div>
       
