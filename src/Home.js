@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './Home.css';
-import Level1 from './Level1';
-import Level2 from './Level2'
+import Level1 from './Level1/Level1';
+import Level2 from './Level2/Level2'
 
 
 

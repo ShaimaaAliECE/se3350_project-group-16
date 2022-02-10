@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {mergeSortingAlgo} from  './MergeSort';
+import {mergeSortingAlgo} from  '../MergeSort';
 import './Level1.css';
 import  Steps from './Steps';
 
@@ -68,9 +68,9 @@ const Level1 = (props)=>{
                 <div className="array-layout">
                    
                    <div className='array-nums'>
-                    {unsort.map((element)=>{
+                    {unsort.map((element, index)=>{
                         return(
-                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
+                            <div key={index} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
                     </div>
@@ -81,9 +81,9 @@ const Level1 = (props)=>{
 
                 <div className = "array-layout">
                     <div className='array-nums'>
-                    {sort.map((element)=>{
+                    {sort.map((element, index)=>{
                         return(
-                            <div key={Math.random()} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
+                            <div key={index} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
                         )
                     })}
                     </div>
