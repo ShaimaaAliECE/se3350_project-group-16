@@ -1,25 +1,28 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React, { useEffect, useState } from 'react';
-
-
 import { motion } from "framer-motion"
 import nextId from "react-id-generator";
+import './Steps.css'
+import {Howl, Howler} from 'howler';
+import click from '../AudioClips/click.mp3'
 
-
-
+var sfx = {
+    fake: new Howl({
+    src:[click]
+})
+}
 
 const Numbers = (props) => {
     
     return (
  
-        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px', }}>
+        <div className='steps-nums-header'>
   
             {
                 props.data.map((element, index) => {
                     if (Array.isArray(element[0])) {
                      
                         return (
-                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', }}>
+                            <div key={nextId()} className='nums-body'>
                                 {
                                     
                                      element.map((element2, index1) => {
@@ -46,7 +49,7 @@ const Numbers = (props) => {
                        
                         return (
 
-                            <div key={nextId()} style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }}>
+                            <div key={nextId()} className='nums-top'>
                                 
                                 <motion.div
                                     initial={{opacity:props.toggle?0.0:1.0}}
@@ -114,6 +117,10 @@ const Steps = (props) => {
 
             if (index3 === props.contents.length-1 && index1 === props.contents[index3][index2].length - 1) {
                 console.log('in reset')
+                console.log(sfx.fake.state())
+                sfx.fake.play();
+                console.log(sfx.fake.state())
+                console.log(sfx.fake)
                 setIndex1(-1);
                 setIndex3(0);
                 setStep('');
@@ -159,16 +166,16 @@ const Steps = (props) => {
 
     return (
 
-        <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'center', margin: '15px' }}>
-            <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
+        <div className='steps-header'>
+            <div className='steps-body' >
 
                 <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
                 <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
             </div>
 
-            <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-evenly', margin: '15px' }} >
-                <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-evenly', margin: '15px' }} >
-                    <div style={{width:'500px'}}>{step}</div>
+            <div className='steps-display' >
+                <div className='steps-body'>
+                    <div style={{width:'500px', marginRight:'15px'}}>{step}</div>
                     <div>
                          <Numbers data={data}  toggle={toggleNum} ></Numbers>
 
