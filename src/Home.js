@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './Home.css';
 import Level1 from './Level1/Level1';
 import Level2 from './Level2/Level2'
+import Level3 from './Level3/Level3'
 
 
 
@@ -17,17 +18,23 @@ const Home = ()=>
 
     function nextLevel(level)
     {
-        if(level===1)
+        
+        switch(level)
         {
-            setOne(true);
-            setTwo(false);
-            setThree(false)
-        }
-        else if(level===2)
-        {
-            setOne(false);
-            setTwo(true);
-            setThree(false);
+            case 2:
+                setOne(false)
+                setTwo(true)
+                setThree(false)
+                break;
+            case 3:
+                setOne(false)
+                setTwo(false)
+                setThree(true)
+                break;
+            
+            default:
+                console.log('error  in level  selection.')
+
         }
 
     }
@@ -43,9 +50,9 @@ const Home = ()=>
            <div name="body">
                
                    
-                         {levelOne&&<Level1 goToNext={nextLevel}/>}
-                         {levelTwo&&<Level2/>}
-                         {}
+                         {levelOne&&<Level1 goToNext={nextLevel}/>} 
+                         {levelTwo&&<Level2  goToNext={nextLevel}/>}
+                         {levelThree&&<Level3/>}
                      
            </div>
            
