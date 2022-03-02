@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import {mergeSortingAlgo} from  '../MergeSort';
 import './Level2.css';
 import  Steps2 from './Steps2';
+import ToolTip from 'react-tooltip';
+import infoLogo from '../Images/index.png';
 
 const Level2 = (props)=>{
 
