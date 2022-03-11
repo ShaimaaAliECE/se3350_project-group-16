@@ -41,4 +41,16 @@
     border: 1px solid green
 }
 
+.level-info{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-around
+}
+
+.info-icon{
+    height: 1.75vh;
+    margin-left: 5px;
+}
+
+
 

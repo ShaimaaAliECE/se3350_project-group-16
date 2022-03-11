@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
 import {mergeSortingAlgo} from  '../MergeSort';
-import './Level3.css';
-import  Steps3 from './Steps3';
-import ToolTip from 'react-tooltip';
-import infoLogo from '../Images/index.png';
+import './Level4.css';
+import  Steps4 from './Steps4';
 
-const Level3 = (props)=>{
+const Level4 = (props)=>{
 
 
     const[sort, setSort]=useState([]);
@@ -22,9 +20,9 @@ const Level3 = (props)=>{
         let nums=[]
    
 
-        for(let i=0;i<10;i++)
+        for(let i=0;i<20;i++)
         {
-            nums.push(Math.floor(Math.random()*20));
+            nums.push(Math.floor(Math.random()*50)+1);
         }
 
         setUnSort([...nums]);
@@ -43,7 +41,7 @@ const Level3 = (props)=>{
         setSort([]);
         setUnSort([]);
         setStep(true);
-        props.goToNext(1);
+        props.goToNext(5);
     }
 
 
@@ -59,11 +57,7 @@ const Level3 = (props)=>{
         <div className="level-container">
 
             <div className="header">
-                <div className="level-info">
-                    <div>Level 3</div>
-                    <img src={infoLogo} className='info-icon' data-tip="Level 3: Complete each step correctly to move on" data-place="right"></img>
-                    <ToolTip/>
-                </div>
+                <div >Level 4</div>
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
@@ -97,9 +91,9 @@ const Level3 = (props)=>{
                 </div>
       
             </div>
-             <Steps3 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps3> 
+             <Steps4 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps4> 
         </div>
     )
 }
 
-export default Level3;
+export default Level4;
