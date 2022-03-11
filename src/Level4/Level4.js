@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { mergeSortingAlgo } from "../MergeSort";
 import "./Level4.css";
 import Steps4 from "./Steps4";
+import ToolTip from 'react-tooltip';
+import infoLogo from '../Images/index.png';
 
 const Level4 = (props) => {
   const [sort, setSort] = useState([]);
@@ -43,7 +45,11 @@ const Level4 = (props) => {
   return (
     <div className="level-container">
       <div className="header">
-        <div>Level 4</div>
+        <div className="level-info">
+          <div>Level 4</div>
+          <img src={infoLogo} className='info-icon' data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort" data-place="right"></img>
+          <ToolTip/>
+        </div>
         <button
           onClick={() => {
             intitiate();
