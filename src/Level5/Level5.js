@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import {mergeSortingAlgo} from  '../MergeSort';
-import './Level3.css';
-import  Steps3 from './Steps3';
+import './Level5.css';
+import  Steps4 from './Steps5';
 
-const Level3 = (props)=>{
+const Level5 = (props)=>{
 
 
     const[sort, setSort]=useState([]);
@@ -20,9 +20,9 @@ const Level3 = (props)=>{
         let nums=[]
    
 
-        for(let i=0;i<10;i++)
+        for(let i=0;i<50;i++)
         {
-            nums.push(Math.floor(Math.random()*20)+1);
+            nums.push(Math.floor(Math.random()*100)+1);
         }
 
         setUnSort([...nums]);
@@ -41,7 +41,7 @@ const Level3 = (props)=>{
         setSort([]);
         setUnSort([]);
         setStep(true);
-        props.goToNext(4);
+        props.goToNext(5);
     }
 
 
@@ -57,7 +57,7 @@ const Level3 = (props)=>{
         <div className="level-container">
 
             <div className="header">
-                <div >Level 3</div>
+                <div >Level 5</div>
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
 
@@ -70,7 +70,7 @@ const Level3 = (props)=>{
                    <div className='array-nums'>
                     {unsort.map((element, index)=>{
                         return(
-                            <div key={index} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
+                            <div key={index} style={{marginLeft: '.25rem' ,marginRight: '.25rem' }}  > {element} </div>
                         )
                     })}
                     </div>
@@ -83,7 +83,7 @@ const Level3 = (props)=>{
                     <div className='array-nums'>
                     {sort.map((element, index)=>{
                         return(
-                            <div key={index} style={{marginLeft: '.5rem' ,marginRight: '.5rem' }}  > {element} </div>
+                            <div key={index} style={{marginLeft: '.25rem' ,marginRight: '.25rem' }}  > {element} </div>
                         )
                     })}
                     </div>
@@ -91,9 +91,9 @@ const Level3 = (props)=>{
                 </div>
       
             </div>
-             <Steps3 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps3> 
+             <Steps4 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps4> 
         </div>
     )
 }
 
-export default Level3;
+export default Level5;
