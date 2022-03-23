@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {mergeSortingAlgo} from  '../MergeSort';
 import './Level5.css';
 import  Steps4 from './Steps5';
+import Timer  from 'react-compound-timer'
 
 const Level5 = (props)=>{
 
@@ -88,6 +89,27 @@ const Level5 = (props)=>{
                     })}
                     </div>
 
+                </div>
+
+                <div className= "array-layout">
+                        <Timer initialTime={0} direction="forward" 
+                        checkpoints={[
+                            {
+                                time: 300000,
+                                callback: ()=>{props.goToNext(0)}
+                            }
+                        ]}>
+                            {
+                                <React.Fragment>
+                                    <div style={{marginRight:".5rem"}}>Timer </div>
+                                 
+                                     <Timer.Minutes  /> 
+                                     <div>:</div>
+                                     <Timer.Seconds /> 
+                                </React.Fragment>
+                            }
+                        
+                        </Timer>
                 </div>
       
             </div>

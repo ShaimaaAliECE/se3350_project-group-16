@@ -12,11 +12,12 @@ import Level5 from './Level5/Level5';
 const Home = ()=>
 {
 
-    const [levelOne, setOne] = useState(true);
+    const [levelOne, setOne] = useState(false);
     const [levelTwo, setTwo] = useState(false);
     const [levelThree, setThree] = useState(false);
     const [levelFour, setFour] = useState(false);
     const [levelFive, setFive] = useState(false);
+    const [hideStart, setStart] = useState(true);
 
 
 
@@ -25,6 +26,24 @@ const Home = ()=>
         
         switch(level)
         {
+
+            case 0:
+                setOne(false)
+                setTwo(false)
+                setThree(false)
+                setFour(false);
+                setFive(false);
+                setStart(true);
+                break;
+
+            case 1:
+                setOne(true)
+                setTwo(false)
+                setThree(false)
+                setFour(false);
+                setFive(false);
+                break;
+
             case 2:
                 setOne(false)
                 setTwo(true)
@@ -70,14 +89,15 @@ const Home = ()=>
 
         <div className="sorting-tutor">
            <div className="title">Welcome To The Sorting Tutor</div>
+          {hideStart&& <button onClick={()=>{nextLevel(1); setStart(false)}}>Click Here to Start</button>}
            <div name="body">
                
                    
-                         {/* {levelOne&&<Level1 goToNext={nextLevel}/>} 
+                         {levelOne&&<Level1 goToNext={nextLevel}/>} 
                          {levelTwo&&<Level2  goToNext={nextLevel}/>}
-                         {levelThree&&<Level3 goToNext={nextLevel}/>} */}
-                         {/* {true&&<Level4 goToNext={nextLevel}/>} */}
-                         {true&&<Level5 goToNext={nextLevel}/>}
+                         {levelThree&&<Level3 goToNext={nextLevel}/>}
+                         {levelFour&&<Level4 goToNext={nextLevel}/>}
+                         {levelFive&&<Level5 goToNext={nextLevel}/>}
                          
                      
            </div>
