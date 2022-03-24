@@ -6,12 +6,12 @@ import './LevelCustom.css';
 import  Steps4 from './StepsCustom';
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
-//import Range from 'rc-slider';
+import Range from 'rc-slider';
 import Slider from 'rc-slider';
 import "rc-slider/assets/index.css";
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const Range = createSliderWithTooltip(Slider.Range);
+//const { createSliderWithTooltip } = Slider;
+//const Range = createSliderWithTooltip(Slider.Range);
 
 const LevelCustom = (props)=>{
 
@@ -21,9 +21,7 @@ const LevelCustom = (props)=>{
     const[branch, setBranch]  = useState([]);
     const [generate, setGenerate] = useState(false);
     const [toggleStep, setStep] = useState(true);
-    const [value,setValue] = useState(0);
-    //const [rangeLow,setRangeLow] = useState(0);
-    //const [rangeHigh,setRangeHigh] = useState(0);
+    const [value,setValue] = useState(5);
     const [range,setRange] = useState([10,20]);
 
     function startSort()
@@ -35,7 +33,8 @@ const LevelCustom = (props)=>{
 
         for(let i=0;i<value;i++)
         {
-            nums.push(Math.floor(Math.random()*100)+1);
+            let numRange = range[1] - range[0];
+            nums.push(Math.floor(Math.random()*numRange)+range[0]);
         }
 
         setUnSort([...nums]);
@@ -79,9 +78,9 @@ const LevelCustom = (props)=>{
             </div>
                 
             <div className='slider'>
-            <div style={{backgroundColor: "yellow"}}>Please enter the number of values you would like to practice with</div>
+            <div style={{}}>Please enter the number of values you would like to practice with</div>
                 <p>{value}</p>
-                <Slider min={0} max={120} onChange={val => setValue(val)}
+                <Slider  min={0} max={120} onChange={val => setValue(val)}
                                             railStyle={{
                                                 height: 2 }}
                                             handleStyle={{
@@ -89,7 +88,7 @@ const LevelCustom = (props)=>{
                                                 width: 28,
                                                 marginLeft: 100,
                                                 marginTop: -14,
-                                                backgroundColor: "red",
+                                                backgroundColor: "blue",
                                                 border: 0}}
                                             trackStyle={{
                                                  background: "none"}}/>
@@ -98,7 +97,8 @@ const LevelCustom = (props)=>{
             <div className='slider'>
                 <div style={{}}>Please select the range of the values that will be generated</div>
                 <p> minimum value possible: Maximum value possible </p>
-                <Range min={0} max={120} defaultValue= {[10,20]}  onChange={val => setRange(val)}
+                <p>{range[0]},{range[1]}</p>
+                <Slider range={true} min={2} max={70} defaultValue= {[10,20]}  onChange={val =>setRange(val)}
                                                                 railStyle={{
                                                                     height: 2 }}
                                                                 handleStyle={{
@@ -106,8 +106,7 @@ const LevelCustom = (props)=>{
                                                                     width: 28,
                                                                     marginLeft: 100,
                                                                     marginTop: -14,
-                                                                    backgroundColor: "red",
-                                                                    border: 0}}
+                                                                    backgroundColor: "blue",}}
                                                                 trackStyle={{
                                                                     background: "none"}}/>
             </div>
