@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { mergeSortingAlgo } from "../MergeSort";
-import "./Level5.css";
-import Steps5 from "./Steps5";
+import {mergeSortingAlgo} from  '../MergeSort';
+import './Level5.css';
+import  Steps5 from './Steps5';
+import Timer  from 'react-compound-timer'
 
 const Level5 = (props) => {
   const [sort, setSort] = useState([]);
@@ -90,15 +91,39 @@ const Level5 = (props) => {
               );
             })}
           </div>
-        </div>
-      </div>
-      <Steps5
+
+                <div className= "array-layout">
+                        <Timer initialTime={0} direction="forward" 
+                        checkpoints={[
+                            {
+                                time: 300000,
+                                callback: ()=>{props.goToNext(0)}
+                            }
+                        ]}>
+                            {
+                                <React.Fragment>
+                                    <div style={{marginRight:".5rem"}}>Timer </div>
+                                 
+                                     <Timer.Minutes  /> 
+                                     <div>:</div>
+                                     <Timer.Seconds /> 
+                                </React.Fragment>
+                            }
+                        
+                        </Timer>
+                </div>
+      
+            </div>
+            <Steps5
         contents={branch}
         toggle={toggleStep}
         resetGen={resetGenerate}
         lvlSelect={levelSelect}
-      ></Steps5>
-    </div>
+      ></Steps5> 
+        </div>
+      </div>
+      
+   
   );
 };
 

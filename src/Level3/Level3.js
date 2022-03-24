@@ -5,6 +5,7 @@ import './Level3.css';
 import  Steps3 from './Steps3';
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
+import Timer  from 'react-compound-timer'
 
 const Level3 = (props)=>{
 
@@ -94,6 +95,27 @@ const Level3 = (props)=>{
                     })}
                     </div>
 
+                </div>
+
+                <div className= "array-layout">
+                        <Timer initialTime={0} direction="forward" 
+                        checkpoints={[
+                            {
+                                time: 300000,
+                                callback: ()=>{props.goToNext(0)}
+                            }
+                        ]}>
+                            {
+                                <React.Fragment>
+                                    <div style={{marginRight:".5rem"}}>Timer </div>
+                                 
+                                     <Timer.Minutes  /> 
+                                     <div>:</div>
+                                     <Timer.Seconds /> 
+                                </React.Fragment>
+                            }
+                        
+                        </Timer>
                 </div>
       
             </div>
