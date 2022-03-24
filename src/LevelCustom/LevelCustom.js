@@ -77,16 +77,16 @@ const LevelCustom = (props)=>{
                 <button onClick={()=>{intitiate()}} disabled={generate}>Generate  Numbers</button>
             </div>
                 
-            <div className='slider'>
-            <div style={{}}>Please enter the number of values you would like to practice with</div>
+            <div style={{marginLeft: '400px' ,marginRight: '400px' }} className='slider'>
+            <div style={{}}>Please enter the number of values you would like to practice with:</div>
                 <p>{value}</p>
                 <Slider  min={0} max={120} onChange={val => setValue(val)}
                                             railStyle={{
                                                 height: 2 }}
                                             handleStyle={{
-                                                height: 28,
-                                                width: 28,
-                                                marginLeft: 100,
+                                                height: 30,
+                                                width: 30,
+                                                marginLeft: -14,
                                                 marginTop: -14,
                                                 backgroundColor: "blue",
                                                 border: 0}}
@@ -94,17 +94,19 @@ const LevelCustom = (props)=>{
                                                  background: "none"}}/>
             </div>
 
-            <div className='slider'>
-                <div style={{}}>Please select the range of the values that will be generated</div>
-                <p> minimum value possible: Maximum value possible </p>
-                <p>{range[0]},{range[1]}</p>
-                <Slider range={true} min={2} max={70} defaultValue= {[10,20]}  onChange={val =>setRange(val)}
+            <div style={{marginLeft: '400px' ,marginRight: '400px' }} className='slider'>                         
+                
+                <div style={{}}>Please select the range of the values that will be generated:</div>
+                <p></p>
+                <p> minimum value possible: {range[0]} Maximum value possible: {range[1]}</p>
+                <p></p>
+                <Slider range={true} min={2} max={200} defaultValue= {[2,10]}  onChange={val =>setRange(val)}
                                                                 railStyle={{
                                                                     height: 2 }}
                                                                 handleStyle={{
-                                                                    height: 28,
-                                                                    width: 28,
-                                                                    marginLeft: 100,
+                                                                    height: 30,
+                                                                    width: 30,
+                                                                    marginLeft: -14,
                                                                     marginTop: -14,
                                                                     backgroundColor: "blue",}}
                                                                 trackStyle={{
