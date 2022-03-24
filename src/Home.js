@@ -14,7 +14,7 @@ const Home = ()=>
 
     const [levelOne, setOne] = useState(false);
     const [levelTwo, setTwo] = useState(false);
-    const [levelThree, setThree] = useState(false);
+    const [levelThree, setThree] = useState(true);
     const [levelFour, setFour] = useState(false);
     const [levelFive, setFive] = useState(false);
     const [hideStart, setStart] = useState(true);

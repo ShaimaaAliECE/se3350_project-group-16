@@ -117,6 +117,20 @@ const Steps4 = (props) => {
   const [counter, setCounter] = useState(0);
   const [doneMerge, setDone] = useState(false);
   const [inMerge, setIn] = useState(false);
+  const [errors, setErrors] = useState(0);
+  const [fatalError, setFatalError] = useState(false);
+
+  const incrementError = () => {
+    if (fatalError === false) {
+      setErrors(errors + 1);
+    }
+    if (errors === 2) {
+      setFatalError(true);
+    }
+  };
+  const restartLevel = () => {
+    window.location.reload();
+  };
 
   function checkMerge(merge) {
     setIn(true);
@@ -166,6 +180,7 @@ const Steps4 = (props) => {
       sfx.wrong.play();
       setColor(false);
       setResult("WRONG");
+      incrementError();
       return false;
     }
   }
@@ -182,6 +197,7 @@ const Steps4 = (props) => {
         console.log("incorrect");
         setColor(false);
         setResult("WRONG");
+        incrementError();
       }
     } else {
       console.log(data[1][0]);
@@ -196,6 +212,7 @@ const Steps4 = (props) => {
         console.log("incorrect");
         setColor(false);
         setResult("WRONG");
+        incrementError();
       }
     }
   }
@@ -244,6 +261,7 @@ const Steps4 = (props) => {
   return (
     <div className="steps-header">
       <div className="steps-body">
+      <div className="error-count">Current Errors: {errors}</div>
         <button
           onClick={() => {
             changeStep(index3 - 1);
@@ -260,6 +278,18 @@ const Steps4 = (props) => {
         >
           Next Step
         </button>
+        <div
+          style={{
+            visibility: fatalError ? "visible" : "hidden",
+            display: "flex",
+          }}
+        >
+          <button onClick={() => {restartLevel()}}>Restart Level</button>
+          <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
+          <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
+          <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
+          
+        </div>
       </div>
 
       <div style={{ color: toggleColor ? "green" : "red" }}>{result}</div>
