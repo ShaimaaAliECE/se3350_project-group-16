@@ -28,6 +28,7 @@ const Home = ()=>
     function nextLevel(level)
     {
         
+        
         switch(level)
         {
 
@@ -81,7 +82,8 @@ const Home = ()=>
                 setTwo(false)
                 setThree(false)
                 setFour(false);
-                setFive(true); 
+                setFive(false); 
+                setCustom(true);
                 break;
             
             default:
@@ -108,8 +110,8 @@ const Home = ()=>
                          {levelTwo&&<Level2  goToNext={nextLevel}/>}
                          {levelThree&&<Level3 goToNext={nextLevel}/>} 
                          {levelFour&&<Level4 goToNext={nextLevel}/>}
-                         {levelFive&&<Level5 goToNext={nextLevel}/>}
-                         {true&&<LevelCustom gotToNext={nextLevel}/>}
+                         {levelFive&&<Level5 goToNext={nextLevel}/>} 
+                         {levelCustom&&<LevelCustom gotToNext={nextLevel}/>}
                        
                          
                      

@@ -35,10 +35,12 @@ const Level5 = (props) => {
     setSort([]);
     setUnSort([]);
     setStep(true);
-    props.goToNext(5);
+    props.goToNext(6);
   }
 
   function levelSelect(select){
+
+  
       props.goToNext(select)
   }
 
