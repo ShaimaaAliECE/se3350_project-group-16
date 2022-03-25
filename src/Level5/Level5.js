@@ -92,7 +92,11 @@ const Level5 = (props) => {
             })}
           </div>
 
-                <div className= "array-layout">
+             
+      
+            </div>
+
+            <div className= "array-layout">
                         <Timer initialTime={0} direction="forward" 
                         checkpoints={[
                             {
@@ -112,8 +116,6 @@ const Level5 = (props) => {
                         
                         </Timer>
                 </div>
-      
-            </div>
             <Steps5
         contents={branch}
         toggle={toggleStep}
