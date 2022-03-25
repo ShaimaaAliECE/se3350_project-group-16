@@ -37,7 +37,6 @@ const Level5 = (props) => {
 
   function levelSelect(select){
       props.goToNext(select)
-      console.log("hello")
   }
 
   function intitiate() {

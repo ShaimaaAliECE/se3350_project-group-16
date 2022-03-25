@@ -41,6 +41,10 @@ const Level4 = (props) => {
     setStep(false);
   }
 
+  function levelSelect(select){
+    props.goToNext(select)
+}
+
   return (
     <div className="level-container">
       <div className="header">
@@ -113,6 +117,7 @@ const Level4 = (props) => {
         contents={branch}
         toggle={toggleStep}
         resetGen={resetGenerate}
+        lvlSelect={levelSelect}
       ></Steps4>
     </div>
   );

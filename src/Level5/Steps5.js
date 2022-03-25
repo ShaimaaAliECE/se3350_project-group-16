@@ -286,8 +286,11 @@ const Steps5 = (props) => {
           }}
         >
           <button onClick={() => {restartLevel()}}>Restart Level</button>
-          <button onClick={() => props.lvlSelect(1)}> go to level 1</button>
-          <button>hellp</button>
+          <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
+          <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
+          <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
+          <button onClick={() => props.lvlSelect(4)}> Go to level 4</button>
+          
         </div>
       </div>
 
