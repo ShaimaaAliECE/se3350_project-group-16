@@ -1,412 +1,312 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from "framer-motion"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import nextId from "react-id-generator";
-import './Steps5.css'
+import "./Steps5.css";
 import SelectionHighlighter from "react-highlight-selection";
-import {Howl, Howler} from 'howler';
-import wrong from "../AudioClips/wrongSound.mp3"
-import right from "../AudioClips/rightSound.mp3"
+import { Howl, Howler } from "howler";
+import wrong from "../AudioClips/wrongSound.mp3";
+import right from "../AudioClips/rightSound.mp3";
 
 var sfx = {
-    wrong: new Howl({
-        src: [
-            wrong
-        ],
-        onend: function (){
-            console.log("the wrong sound played")
-        }
-    }),
-    right: new Howl({
-        src: [
-            right
-        ],
-        onend: function (){
-            console.log("the right sound played")
-        }
-    }),
+  wrong: new Howl({
+    src: [wrong],
+    onend: function () {
+      console.log("the wrong sound played");
+    },
+  }),
+  right: new Howl({
+    src: [right],
+    onend: function () {
+      console.log("the right sound played");
+    },
+  }),
 
-    fake: new Howl({
-        src:[
-            'src/AudioClips/click.mp3'
-
-        ]
-    })
-}
-
-
-
+  fake: new Howl({
+    src: ["src/AudioClips/click.mp3"],
+  }),
+};
 
 const Numbers = (props) => {
-    
+  const [mergedArray, setMerge] = useState([]);
+  const [indexHolder, setIndex] = useState([]);
+  const [selectDis, setDis] = useState(false);
 
-    const [mergedArray, setMerge] = useState([]);
-    const [indexHolder, setIndex]  = useState([]);
-    const [selectDis, setDis] = useState(false);
+  useEffect(() => {
+    setMerge([]);
+  }, [props.data]);
 
+  const onSelect = (text) => {
+    let select = text.selection.replace(/\s+/g, "");
 
-    useEffect(()=>{
-        setMerge([])
-    },[props.data])
+    props.checkSelect(select);
+  };
 
+  const addNum = (num) => {
+    let holder = [...mergedArray, num];
 
-    const onSelect=(text)=>{
-
-    
-
-        let select = text.selection.replace(/\s+/g, '')
-      
-        props.checkSelect(select)
-
+    if (props.sendMerge(holder)) {
+      setMerge((data) => [...data, num]);
     }
+  };
 
-    const addNum=(num)=>{
+  return (
+    <div>
+      {props.data.map((element, index) => {
+        if (Array.isArray(element[0]) && index === 0) {
+          return (
+            <div key={nextId()} className="nums-outer">
+              <div className="nums-body">
+                {element.map((element2, index1) => {
+                  return (
+                    <div key={nextId()}>
+                      {element2.map((element3, index3) => {
+                        return (
+                          <button
+                            key={nextId()}
+                            disabled={props.toggle}
+                            onClick={() => {
+                              addNum(element3);
+                            }}
+                          >
+                            {element3}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="picked-nums">
+                {mergedArray.map((num, index4) => {
+                  return (
+                    <div key={index4} style={{ marginLeft: "15px" }}>
+                      {num}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        } else if (index === 0) {
+          console.log("hi");
 
-        let holder = [...mergedArray, num]
-       
-        if(props.sendMerge(holder))
-        {
-            setMerge(data=> [...data, num])
-
+          return (
+            <div key={nextId()} className="nums">
+              <SelectionHighlighter
+                text={element.join(" ")}
+                selectionHandler={onSelect}
+                customClass="custom-class"
+              />
+            </div>
+          );
         }
-
-     
-
-      
-     
-
-    }
-
-
-
-
-
-    return (
- 
-        <div >
-  
-            {
-                props.data.map((element, index) => {
-
-                    if (Array.isArray(element[0])&&index===0) {
-                     
-                        return (
-                            <div key={nextId()} className='nums-outer'>
-                                <div className='nums-body'>
-                                {
-                                    
-                                     element.map((element2, index1) => {
-                                                return <div key={nextId()} >
-                                                 
-                                                 {element2.map((element3, index3)=>{
-                                                     return(
-                                                         <button key={nextId()} disabled={props.toggle} onClick={()=>{addNum(element3)}}>{element3}</button>
-                                                     )
-                                                 })}
-                                           
-                                                </div>
-                                            })
-
-                                  
-                                 
-                                }
-                                </div>
-                                <div className='picked-nums'>{mergedArray.map((num, index4)=>{
-                                    return(<div key={index4} style={{marginLeft:'15px'}}>{num}</div>)
-                                })}</div>
-                            </div>
-
-                        )
-
-                    }
-                    else if(index===0) {
-                        console.log('hi');
-                     
-                       
-                        return (
-
-                            <div key={nextId()} className='nums' >
-                                   <SelectionHighlighter
-                                        text={element.join(" ")}
-                                        selectionHandler={onSelect}
-                                        customClass='custom-class'
-                                    />
-                                   
-                            </div>
-                        )
-
-                    }
-
-                   
-
-
-                })
-            }
-        </div>
-    )
-
-
-}
-
+      })}
+    </div>
+  );
+};
 
 const Steps5 = (props) => {
+  const [index1, setIndex1] = useState(-1);
+  const [index2, setIndex2] = useState(0);
+  const [index3, setIndex3] = useState(-1);
+  const [step, setStep] = useState("");
+  const [data, setData] = useState([]);
+  const [toggleNum, setToggleNum] = useState(false);
+  const [toggleColor, setColor] = useState(false);
+  const [result, setResult] = useState("");
+  const [counter, setCounter] = useState(0);
+  const [doneMerge, setDone] = useState(false);
+  const [inMerge, setIn] = useState(false);
+  const [errors, setErrors] = useState(0);
+  const [fatalError, setFatalError] = useState(false);
 
-    const [index1, setIndex1] = useState(-1);
-    const [index2, setIndex2] = useState(0);
-    const [index3, setIndex3] = useState(-1);
-    const [step, setStep] = useState('');
-    const [data, setData] = useState([]);
-    const[toggleNum, setToggleNum] = useState(false);
-    const [toggleColor, setColor] = useState(false);
-    const [result,  setResult] = useState('');
-    const [counter, setCounter] = useState(0);
-    const [doneMerge, setDone] = useState(false)
-    const [inMerge, setIn] = useState(false);
-  
+  const incrementError = () => {
+    if (fatalError === false) {
+      setErrors(errors + 1);
+    }
+    if (errors === 2) {
+      setFatalError(true);
+    }
+  };
 
-    function checkMerge(merge)
-    {
-     
-        setIn(true);
-        
+  function checkMerge(merge) {
+    setIn(true);
 
-        let compareData=[];
+    let compareData = [];
 
-        data.forEach((element)=>{
-            if(!Array.isArray(element[0]))
-            {
-                compareData.push(element);
-            }
-        })
+    data.forEach((element) => {
+      if (!Array.isArray(element[0])) {
+        compareData.push(element);
+      }
+    });
 
-        console.log(counter)
+    console.log(counter);
 
-      
+    if (
+      JSON.stringify(merge) ===
+      JSON.stringify(compareData[compareData.length - 1])
+    ) {
+      sfx.right.play();
+      setColor(true);
+      setResult("CORRECT");
 
+      setToggleNum(true);
+      setDone(true);
+      return true;
+    }
 
-        if(JSON.stringify(merge)===JSON.stringify(compareData[compareData.length-1]))
-        {
-            sfx.right.play()
-            setColor(true);
-            setResult('CORRECT')
-           
-           
-            setToggleNum(true);
-            setDone(true);
-            return true;
+    if (JSON.stringify(merge) === JSON.stringify(compareData[counter])) {
+      sfx.right.play();
+      setColor(true);
+      setResult("CORRECT");
 
+      if (counter + 1 < compareData.length) {
+        setCounter(counter + 1);
+      }
+      return true;
+    } else if (compareData[counter].join("").includes(merge.join(""))) {
+      sfx.right.play();
+      setColor(true);
+      setResult("CORRECT");
+      if (counter + 1 < compareData.length) {
+        setCounter(counter + 1);
+      }
+
+      return true;
+    } else {
+      sfx.wrong.play();
+      setColor(false);
+      setResult("WRONG");
+      incrementError();
+      return false;
+    }
+  }
+
+  function checkSelection(nums) {
+    if (data[1][0].length > 1) {
+      if (nums === data[1][0].join("")) {
+        sfx.right.play();
+        console.log("correct");
+        setColor(true);
+        setResult("CORRECT");
+      } else if (nums.length > 0) {
+        sfx.wrong.play();
+        console.log("incorrect");
+        setColor(false);
+        setResult("WRONG");
+        incrementError();
+      }
+    } else {
+      console.log(data[1][0]);
+      console.log(nums);
+      if (nums === data[1][0].toString()) {
+        sfx.right.play();
+        console.log("correct");
+        setColor(true);
+        setResult("CORRECT");
+      } else if (nums.length > 0) {
+        sfx.wrong.play();
+        console.log("incorrect");
+        setColor(false);
+        setResult("WRONG");
+        incrementError();
+      }
+    }
+  }
+
+  function changeStep(newValue) {
+    if (props.contents.length > 0) {
+      if (newValue < index3 && newValue >= 0) {
+        setData((data) => [...props.contents[newValue][1]]);
+        setIndex3(newValue);
+
+        return;
+      }
+
+      if (index3 === props.contents.length - 1) {
+        console.log("in reset");
+        setIndex1(-1);
+        setIndex3(0);
+        setStep("");
+        setData([]);
+
+        props.resetGen();
+      } else {
+        if (newValue === 0) {
+          setIndex3(newValue);
+          setData((data) => [...props.contents[0][1]]);
+        } else if (toggleColor && (inMerge ? doneMerge : true)) {
+          setIndex3(index3 + 1);
+
+          setData((data) => [...props.contents[index3 + 1][1]]);
+
+          setColor(false);
+          setResult("");
+          setCounter(0);
+          setToggleNum(false);
+          setDone(false);
+          setIn(false);
+        } else {
+          alert("Please complete this step  to continue.");
         }
+      }
+    } else {
+      setStep("error");
+    }
+  }
 
+  const restartLevel = () => {
+    window.location.reload();
+  };
 
-
-
-
-        if(JSON.stringify(merge)===JSON.stringify(compareData[counter]))
-        {
-            sfx.right.play()
-            setColor(true);
-            setResult('CORRECT')
-           
-           
-            if(counter+1<compareData.length)
-            {
-                setCounter(counter+1);
-
-            }
-            return true;
-
-        }
-        else if(compareData[counter].join('').includes(merge.join('')))
-        {
-            sfx.right.play()
-            setColor(true);
-            setResult('CORRECT')
-            if(counter+1<compareData.length)
-            {
-                setCounter(counter+1);
-
-            }
+  return (
+    <div className="steps-header">
+      <div className="steps-body">
+        <div className="error-count">Current Errors: {errors}</div>
+        <button
+          onClick={() => {
+            changeStep(index3 - 1);
+          }}
+          disabled={index3 === 0 ? true : false}
+        >
+          Previous Step
+        </button>
+        <button
+          onClick={() => {
+            changeStep(index3 + 1);
+          }}
+          disabled={props.toggle}
+        >
+          Next Step
+        </button>
+        <div
+          style={{
+            visibility: fatalError ? "visible" : "hidden",
+            display: "flex",
+          }}
+        >
+          <button onClick={() => {restartLevel()}}>Restart Level</button>
+          <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
+          <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
+          <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
+          <button onClick={() => props.lvlSelect(4)}> Go to level 4</button>
           
-            return true;
-
-        }
-        else
-        {
-            sfx.wrong.play()
-            setColor(false);
-            setResult('WRONG')
-            return false;
-
-        }
-       
-
-
-
-    }
-
-
-    function checkSelection(nums)
-    {
-        
-
-        if(data[1][0].length>1)
-        {
-            if(nums===data[1][0].join(''))
-            {
-                sfx.right.play()
-                console.log('correct');
-                setColor(true);
-                setResult('CORRECT')
-                
-            }
-            else if(nums.length>0)
-            {
-                sfx.wrong.play()
-                console.log('incorrect');
-                setColor(false);
-                setResult('WRONG')
-                
-            }
-
-        }
-        else
-        {
-            console.log(data[1][0])
-            console.log(nums);
-            if(nums===data[1][0].toString())
-            {
-                sfx.right.play()
-                console.log('correct');
-                setColor(true);
-                setResult('CORRECT');
-                
-            }
-            else if(nums.length>0)
-            {
-                sfx.wrong.play()
-                console.log('incorrect');
-                setColor(false);
-                setResult('WRONG');
-                
-            }
-
-        }
-       
-        
-
-    }
-
-
-    function changeStep(newValue) {
-       
-
-
-        if (props.contents.length > 0) {
-
-           
-
-
-            if (newValue < index3 && newValue >= 0) {
-
-             
-                setData(data => [...props.contents[newValue][1]])
-                setIndex3(newValue)
-                
-                return;
-
-
-            }
-         
-
-            if (index3 === props.contents.length-1 ) {
-                console.log('in reset')
-                setIndex1(-1);
-                setIndex3(0);
-                setStep('');
-                setData([])
-              
-                props.resetGen();
-
-
-            }
-            else {
-
-                if(newValue===0)
-                {
-                        setIndex3(newValue)
-                        setData(data => [...props.contents[0][1]])
-
-                }
-
-                else  if(toggleColor&&(inMerge?doneMerge:true))
-                {
-                   
-                    setIndex3(index3 + 1);
-              
-                    setData(data => [...props.contents[index3 + 1][1]]);
-                   
-                    setColor(false);
-                    setResult('');
-                    setCounter(0);
-                    setToggleNum(false);
-                    setDone(false);
-                    setIn(false)
-
-                }
-                else
-                {
-                    alert('Please complete this step  to continue.')
-                }
-               
-                
-            }
-         
-
-
-
-
-
-        }
-        else {
-            setStep("error")
-        }
-
-    }
-
-    return (
-
-        <div className='steps-header'>
-            <div className='steps-body' >
-
-                <button onClick={() => { changeStep(index3 - 1) }} disabled={index3 === 0? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index3 + 1) }} disabled={props.toggle}>Next Step</button>
-            </div>
-
-            <div style={{color:toggleColor?'green':'red'}}>{result}</div>
-
-            <div className='steps-display' >
-                
-            
-                    <Numbers data={data}  toggle={toggleNum} checkSelect={checkSelection} selectColor={toggleColor} sendMerge={checkMerge} ></Numbers>
-           
-
-                
-            </div>
-
-
-
         </div>
+      </div>
 
-    )
+      <div style={{ color: toggleColor ? "green" : "red" }}>{result}</div>
 
-
-
-
-
-
-
-
-}
-
-
+      <div className="steps-display">
+        <Numbers
+          data={data}
+          toggle={toggleNum}
+          checkSelect={checkSelection}
+          selectColor={toggleColor}
+          sendMerge={checkMerge}
+        ></Numbers>
+      </div>
+    </div>
+  );
+};
 
 export default Steps5;

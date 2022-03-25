@@ -5,6 +5,7 @@ import "./Level4.css";
 import Steps4 from "./Steps4";
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
+import Timer  from 'react-compound-timer'
 
 const Level4 = (props) => {
   const [sort, setSort] = useState([]);
@@ -41,6 +42,10 @@ const Level4 = (props) => {
     setGenerate(true);
     setStep(false);
   }
+
+  function levelSelect(select){
+    props.goToNext(select)
+}
 
   return (
     <div className="level-container">
@@ -92,11 +97,33 @@ const Level4 = (props) => {
             })}
           </div>
         </div>
+
+        <div className= "array-layout">
+                        <Timer initialTime={0} direction="forward" 
+                        checkpoints={[
+                            {
+                                time: 300000,
+                                callback: ()=>{props.goToNext(0)}
+                            }
+                        ]}>
+                            {
+                                <React.Fragment>
+                                    <div style={{marginRight:".5rem"}}>Timer </div>
+                                 
+                                     <Timer.Minutes  /> 
+                                     <div>:</div>
+                                     <Timer.Seconds /> 
+                                </React.Fragment>
+                            }
+                        
+                        </Timer>
+                </div>
       </div>
       <Steps4
         contents={branch}
         toggle={toggleStep}
         resetGen={resetGenerate}
+        lvlSelect={levelSelect}
       ></Steps4>
     </div>
   );
