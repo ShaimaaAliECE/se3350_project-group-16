@@ -31,6 +31,8 @@ const Numbers = (props) => {
   const [indexHolder, setIndex] = useState([]);
   const [selectDis, setDis] = useState(false);
 
+  
+
   useEffect(() => {
     setMerge([]);
   }, [props.data]);

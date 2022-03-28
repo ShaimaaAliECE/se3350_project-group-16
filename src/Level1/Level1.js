@@ -47,6 +47,14 @@ const Level1 = (props) => {
     props.goToNext(select)
 }
 
+function loadTime(time)
+{
+  console.log(time);
+
+  localStorage.setItem('1',JSON.stringify(time))
+
+}
+
   return (
     <div className="level-container">
       <div className="header">
@@ -106,7 +114,7 @@ const Level1 = (props) => {
 
         <div className="array-layout">
           <Timer
-            initialTime={0}
+            initialTime={60000}
             direction="forward"
             checkpoints={[
               {
@@ -117,15 +125,17 @@ const Level1 = (props) => {
               },
             ]}
           >
-            {
-              <React.Fragment>
-                <div style={{ marginRight: ".5rem" }}>Timer </div>
+            {({getTime})=>(
+                  <React.Fragment>
+                    <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                <Timer.Minutes />
-                <div>:</div>
-                <Timer.Seconds />
-              </React.Fragment>
-            }
+                    <Timer.Minutes />
+                    <div>:</div>
+                    <div>{loadTime(getTime())}</div>
+                    <Timer.Seconds />
+                  </React.Fragment>
+                
+            )}
           </Timer>
         </div>
       </div>

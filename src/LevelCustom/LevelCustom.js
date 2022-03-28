@@ -9,6 +9,7 @@ import infoLogo from '../Images/index.png';
 import Range from 'rc-slider';
 import Slider from 'rc-slider';
 import "rc-slider/assets/index.css";
+import Timer  from 'react-compound-timer'
 
 //const { createSliderWithTooltip } = Slider;
 //const Range = createSliderWithTooltip(Slider.Range);
@@ -65,12 +66,30 @@ const LevelCustom = (props)=>{
 
     }
 
+    function getTimeFormat(time)
+    {
+      let minutes = time/60000;
+      let seconds = (time%60000)/1000;
+  
+      return `${parseInt(minutes)}:${parseInt(seconds)}`
+  
+    }
+  
+    function loadTime(time)
+    {
+    console.log(time);
+  
+    localStorage.setItem('1',JSON.stringify(time))
+  
+    }
+
     return(
         <div className="level-container">
 
             <div className="header">
                 <div className="level-info">
                     <div>Custom Level</div>
+                    <div>Time Spent on Level5  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
                     <img src={infoLogo} className='info-icon' data-tip="Custom Level: The data set size it up to you, select the correct steps for a merge sort" data-place="right"></img>
                     <ToolTip/>
                 </div>
@@ -141,6 +160,28 @@ const LevelCustom = (props)=>{
                 </div>
       
             </div>
+            <div className= "array-layout">
+                        <Timer initialTime={0} direction="forward" 
+                        checkpoints={[
+                            {
+                                time: 300000,
+                                callback: ()=>{props.goToNext(0)}
+                            }
+                        ]}>
+                               {({getTime})=>(
+                  <React.Fragment>
+                    <div style={{ marginRight: ".5rem" }}>Timer </div>
+
+                    <Timer.Minutes />
+                    <div>:</div>
+                    <div>{loadTime(getTime())}</div>
+                    <Timer.Seconds />
+                  </React.Fragment>
+                
+            )}
+                        
+                        </Timer>
+                </div>
              <Steps4 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps4> 
         </div>
     )

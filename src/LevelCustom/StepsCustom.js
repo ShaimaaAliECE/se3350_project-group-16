@@ -161,6 +161,18 @@ const StepsCustom = (props) => {
     const [counter, setCounter] = useState(0);
     const [doneMerge, setDone] = useState(false)
     const [inMerge, setIn] = useState(false);
+    const [errors, setErrors] = useState(0);
+    const [fatalError, setFatalError] = useState(false);
+
+
+    const incrementError = () => {
+        if (fatalError === false) {
+          setErrors(errors + 1);
+        }
+        if (errors === 2) {
+          setFatalError(true);
+        }
+      };
   
 
     function checkMerge(merge)
@@ -229,7 +241,8 @@ const StepsCustom = (props) => {
         {
             sfx.wrong.play()
             setColor(false);
-            setResult('WRONG')
+            setResult('WRONG');
+            incrementError();
             return false;
 
         }
@@ -259,7 +272,8 @@ const StepsCustom = (props) => {
                 sfx.wrong.play()
                 console.log('incorrect');
                 setColor(false);
-                setResult('WRONG')
+                setResult('WRONG');
+                incrementError();
                 
             }
 
@@ -282,6 +296,7 @@ const StepsCustom = (props) => {
                 console.log('incorrect');
                 setColor(false);
                 setResult('WRONG');
+                incrementError();
                 
             }
 
@@ -368,13 +383,33 @@ const StepsCustom = (props) => {
 
     }
 
+    const restartLevel = () => {
+        window.location.reload();
+      };
+
     return (
 
         <div className='steps-header'>
             <div className='steps-body' >
+            <div className="error-count">Current Errors: {errors}</div>
 
                 <button onClick={() => { changeStep(index3 - 1) }} disabled={index3 === 0? true : false}>Previous Step</button>
                 <button onClick={() => { changeStep(index3 + 1) }} disabled={props.toggle}>Next Step</button>
+
+                <div
+          style={{
+            visibility: fatalError ? "visible" : "hidden",
+            display: "flex",
+          }}
+        >
+          <button onClick={() => {restartLevel()}}>Restart Level</button>
+          <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
+          <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
+          <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
+          <button onClick={() => props.lvlSelect(4)}> Go to level 4</button>
+          <button onClick={() => props.lvlSelect(5)}> Go to level 5</button>
+          
+        </div>
             </div>
 
             <div style={{color:toggleColor?'green':'red'}}>{result}</div>

@@ -47,10 +47,28 @@ const Level2 = (props) => {
     props.goToNext(select);
   }
 
+  function getTimeFormat(time)
+  {
+    let minutes = time/60000;
+    let seconds = (time%60000)/1000;
+
+    return `${parseInt(minutes)}:${parseInt(seconds)}`
+
+  }
+
+  function loadTime(time)
+  {
+  console.log(time);
+
+  localStorage.setItem('1',JSON.stringify(time))
+
+  }
+
   return (
     <div className="level-container">
       <div className="header">
         <div>Level 2</div>
+        <div>Time Spent on Level1  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
         <button
           onClick={() => {
             intitiate();
@@ -107,15 +125,17 @@ const Level2 = (props) => {
               },
             ]}
           >
-            {
-              <React.Fragment>
-                <div style={{ marginRight: ".5rem" }}>Timer </div>
+               {({getTime})=>(
+                  <React.Fragment>
+                    <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                <Timer.Minutes />
-                <div>:</div>
-                <Timer.Seconds />
-              </React.Fragment>
-            }
+                    <Timer.Minutes />
+                    <div>:</div>
+                    <div>{loadTime(getTime())}</div>
+                    <Timer.Seconds />
+                  </React.Fragment>
+                
+            )}
           </Timer>
         </div>
       </div>

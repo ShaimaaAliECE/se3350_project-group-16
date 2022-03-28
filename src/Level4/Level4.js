@@ -48,14 +48,33 @@ const Level4 = (props) => {
     props.goToNext(select)
 }
 
+function getTimeFormat(time)
+{
+  let minutes = time/60000;
+  let seconds = (time%60000)/1000;
+
+  return `${parseInt(minutes)}:${parseInt(seconds)}`
+
+}
+
+function loadTime(time)
+{
+console.log(time);
+
+localStorage.setItem('1',JSON.stringify(time))
+
+}
+
   return (
     <div className="level-container">
       <div className="header">
         <div className="level-info">
           <div>Level 4</div>
+         
           <img src={infoLogo} className='info-icon' data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort" data-place="right"></img>
           <ToolTip/>
         </div>
+        <div>Time Spent on Level3  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
         <button
           onClick={() => {
             intitiate();
@@ -107,15 +126,17 @@ const Level4 = (props) => {
                                 callback: ()=>{props.goToNext(0)}
                             }
                         ]}>
-                            {
-                                <React.Fragment>
-                                    <div style={{marginRight:".5rem"}}>Timer </div>
-                                 
-                                     <Timer.Minutes  /> 
-                                     <div>:</div>
-                                     <Timer.Seconds /> 
-                                </React.Fragment>
-                            }
+                              {({getTime})=>(
+                  <React.Fragment>
+                    <div style={{ marginRight: ".5rem" }}>Timer </div>
+
+                    <Timer.Minutes />
+                    <div>:</div>
+                    <div>{loadTime(getTime())}</div>
+                    <Timer.Seconds />
+                  </React.Fragment>
+                
+            )}
                         
                         </Timer>
                 </div>

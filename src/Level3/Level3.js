@@ -47,11 +47,29 @@ const Level3 = (props) => {
     props.goToNext(select)
 }
 
+function getTimeFormat(time)
+{
+  let minutes = time/60000;
+  let seconds = (time%60000)/1000;
+
+  return `${parseInt(minutes)}:${parseInt(seconds)}`
+
+}
+
+function loadTime(time)
+{
+console.log(time);
+
+localStorage.setItem('1',JSON.stringify(time))
+
+}
+
   return (
     <div className="level-container">
       <div className="header">
         <div className="level-info">
           <div>Level 3</div>
+         
           <img
             src={infoLogo}
             className="info-icon"
@@ -60,6 +78,7 @@ const Level3 = (props) => {
           ></img>
           <ToolTip />
         </div>
+        <div>Time Spent on Level2  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
         <button
           onClick={() => {
             intitiate();
@@ -116,15 +135,17 @@ const Level3 = (props) => {
               },
             ]}
           >
-            {
-              <React.Fragment>
-                <div style={{ marginRight: ".5rem" }}>Timer </div>
+               {({getTime})=>(
+                  <React.Fragment>
+                    <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                <Timer.Minutes />
-                <div>:</div>
-                <Timer.Seconds />
-              </React.Fragment>
-            }
+                    <Timer.Minutes />
+                    <div>:</div>
+                    <div>{loadTime(getTime())}</div>
+                    <Timer.Seconds />
+                  </React.Fragment>
+                
+            )}
           </Timer>
         </div>
       </div>
