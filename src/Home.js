@@ -105,11 +105,11 @@ const Home = ()=>
           {hideStart&& <button onClick={()=>{nextLevel(1); setStart(false)}}>Click Here to Start</button>}
            <div name="body">
                
-                   
-                         {levelOne&&<Level1 goToNext={nextLevel}/>} 
-                         {levelTwo&&<Level2  goToNext={nextLevel}/>}
+                    
+                        {levelOne&&<Level1 goToNext={nextLevel}/>} 
+                         {levelTwo&&<Level2  goToNext={nextLevel}/>} 
                          {levelThree&&<Level3 goToNext={nextLevel}/>} 
-                         {levelFour&&<Level4 goToNext={nextLevel}/>}
+                         {levelFour&&<Level4 goToNext={nextLevel}/>} 
                          {levelFive&&<Level5 goToNext={nextLevel}/>} 
                          {levelCustom&&<LevelCustom gotToNext={nextLevel}/>}
                        
