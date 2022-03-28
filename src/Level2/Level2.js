@@ -60,7 +60,7 @@ const Level2 = (props) => {
   {
   console.log(time);
 
-  localStorage.setItem('1',JSON.stringify(time))
+  localStorage.setItem('2',JSON.stringify(time))
 
   }
 

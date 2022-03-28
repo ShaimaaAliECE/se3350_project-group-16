@@ -61,7 +61,7 @@ function loadTime(time)
 {
 console.log(time);
 
-localStorage.setItem('1',JSON.stringify(time))
+localStorage.setItem('4',JSON.stringify(time))
 
 }
 
@@ -74,7 +74,7 @@ localStorage.setItem('1',JSON.stringify(time))
           <img src={infoLogo} className='info-icon' data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort" data-place="right"></img>
           <ToolTip/>
         </div>
-        <div>Time Spent on Level3  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
+        <div>Time Spent on Level3  {getTimeFormat(JSON.parse(localStorage.getItem("3")))}</div>
         <button
           onClick={() => {
             intitiate();

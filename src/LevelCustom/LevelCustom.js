@@ -79,7 +79,7 @@ const LevelCustom = (props)=>{
     {
     console.log(time);
   
-    localStorage.setItem('1',JSON.stringify(time))
+    localStorage.setItem('custom',JSON.stringify(time))
   
     }
 
@@ -89,7 +89,7 @@ const LevelCustom = (props)=>{
             <div className="header">
                 <div className="level-info">
                     <div>Custom Level</div>
-                    <div>Time Spent on Level5  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
+                    <div>Time Spent on Level5  {getTimeFormat(JSON.parse(localStorage.getItem("5")))}</div>
                     <img src={infoLogo} className='info-icon' data-tip="Custom Level: The data set size it up to you, select the correct steps for a merge sort" data-place="right"></img>
                     <ToolTip/>
                 </div>

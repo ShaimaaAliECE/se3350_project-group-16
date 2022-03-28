@@ -60,7 +60,7 @@ function loadTime(time)
 {
 console.log(time);
 
-localStorage.setItem('1',JSON.stringify(time))
+localStorage.setItem('3',JSON.stringify(time))
 
 }
 
@@ -78,7 +78,7 @@ localStorage.setItem('1',JSON.stringify(time))
           ></img>
           <ToolTip />
         </div>
-        <div>Time Spent on Level2  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
+        <div>Time Spent on Level2  {getTimeFormat(JSON.parse(localStorage.getItem("2")))}</div>
         <button
           onClick={() => {
             intitiate();

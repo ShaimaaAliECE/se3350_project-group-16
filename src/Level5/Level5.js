@@ -63,7 +63,7 @@ const Level5 = (props) => {
   {
   console.log(time);
 
-  localStorage.setItem('1',JSON.stringify(time))
+  localStorage.setItem('5',JSON.stringify(time))
 
   }
 
@@ -71,7 +71,7 @@ const Level5 = (props) => {
     <div className="level-container">
       <div className="header">
         <div>Level 5</div>
-        <div>Time Spent on Level4  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
+        <div>Time Spent on Level4  {getTimeFormat(JSON.parse(localStorage.getItem("4")))}</div>
         <button
           onClick={() => {
             intitiate();
