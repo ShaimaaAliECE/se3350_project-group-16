@@ -6,13 +6,17 @@ import Steps from "./Steps";
 import ToolTip from "react-tooltip";
 import infoLogo from "../Images/index.png";
 import Timer from "react-compound-timer";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 
 const Level1 = (props) => {
   const [sort, setSort] = useState([]);
   const [unsort, setUnSort] = useState([]);
   const [branch, setBranch] = useState([]);
-  const [generate, setGenerate] = useState(false);
+  const [generate, setGenerate] = useState(true);
   const [toggleStep, setStep] = useState(true);
+  const [menuSel, setMenu] = useState(false);
 
   let currentTime = "";
 
@@ -52,9 +56,20 @@ const Level1 = (props) => {
 
 function loadTime(time)
 {
-  console.log(time);
+
   localStorage.setItem('1',JSON.stringify(time))
   currentTime = time;
+}
+
+function menu(selection)
+{
+  console.log(selection);
+  if(selection.value=="Merge Sort")
+  {
+    setMenu(true);
+    setGenerate(false);
+
+  }
 }
 
   return (
@@ -69,6 +84,12 @@ function loadTime(time)
             data-place="right"
           ></img>
           <ToolTip />
+        </div>
+
+        <div style={{flexDirection:"column", justifyContent:'center' }}>
+
+        <Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
+
         </div>
 
         <button
@@ -116,7 +137,7 @@ function loadTime(time)
 
         <div className="array-layout">
           <Timer
-            initialTime={60000}
+            initialTime={0}
             direction="forward"
             checkpoints={[
               {

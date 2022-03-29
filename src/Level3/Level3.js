@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { mergeSortingAlgo } from "../MergeSort";
 import "./Level3.css";
@@ -6,13 +6,17 @@ import Steps3 from "./Steps3";
 import ToolTip from "react-tooltip";
 import infoLogo from "../Images/index.png";
 import Timer from "react-compound-timer";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Level3 = (props) => {
   const [sort, setSort] = useState([]);
   const [unsort, setUnSort] = useState([]);
   const [branch, setBranch] = useState([]);
-  const [generate, setGenerate] = useState(false);
+  const [generate, setGenerate] = useState(true);
   const [toggleStep, setStep] = useState(true);
+  const [menuSel, setMenu] = useState(false);
+  const timerRef = useRef(null);
 
   let currentTime = "";
 
@@ -40,6 +44,22 @@ const Level3 = (props) => {
     props.goToNext(1);
   }
 
+
+  function restartLevel()
+  {
+    setGenerate(false);
+    setSort([]);
+    setUnSort([]);
+    setBranch([]);
+    setStep(true);
+    setGenerate(true);
+    setMenu(false);
+    timerRef.current.reset();
+    
+ 
+
+  }
+
   function intitiate() {
     startSort();
     setGenerate(true);
@@ -61,10 +81,21 @@ function getTimeFormat(time)
 
 function loadTime(time)
 {
-console.log(time);
+
 
 localStorage.setItem('3',JSON.stringify(time))
 currentTime = time;
+}
+
+function menu(selection)
+{
+ 
+  if(selection.value=="Merge Sort")
+  {
+    setMenu(true);
+    setGenerate(false);
+
+  }
 }
 
   return (
@@ -91,6 +122,12 @@ currentTime = time;
           <ToolTip />
         </div>
         <div>Time Spent on Level2  {getTimeFormat(JSON.parse(localStorage.getItem("2")))}</div>
+
+        <div style={{flexDirection:"column", justifyContent:'center' }}>
+
+<Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
+
+</div>
         <button
           onClick={() => {
             intitiate();
@@ -135,9 +172,10 @@ currentTime = time;
         </div>
 
         <div className="array-layout">
-          <Timer
+        <Timer
             initialTime={0}
             direction="forward"
+            ref={timerRef}
             checkpoints={[
               {
                 time: 300000,
@@ -147,17 +185,23 @@ currentTime = time;
               },
             ]}
           >
-               {({getTime})=>(
+               {({getTime})=>{
+
+                 
+                 
+                 return (
+
                   <React.Fragment>
                     <div style={{ marginRight: ".5rem" }}>Timer </div>
 
                     <Timer.Minutes />
                     <div>:</div>
                     <div>{loadTime(getTime())}</div>
+               
                     <Timer.Seconds />
                   </React.Fragment>
                 
-            )}
+            )}}
           </Timer>
         </div>
       </div>
@@ -166,6 +210,7 @@ currentTime = time;
         toggle={toggleStep}
         resetGen={resetGenerate}
         lvlSelect={levelSelect}
+        resetLevel={restartLevel}
       ></Steps3>
     </div>
   );

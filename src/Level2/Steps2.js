@@ -410,7 +410,21 @@ const Steps2 = (props) => {
 
 
   const restartLevel = () => {
-    window.location.reload();
+
+    setIndex1(-1);
+    setIndex2(0);
+    setIndex3(0);
+    setStep('');
+    setData([]);
+    setToggleNum(false);
+    setColor(false);
+    setResult('');
+    setDone(false);
+    setIn(false);
+    setFatalError(false);
+    setErrors(0);
+  
+    props.resetLevel();
   };
 
     return (
@@ -420,7 +434,7 @@ const Steps2 = (props) => {
             <div className="error-count">Current Errors: {errors}</div>
 
                 <button onClick={() => { changeStep(index1 - 1) }} disabled={index1 <= 0 && index3 === 0 && index2 === 0 ? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle}>Next Step</button>
+                <button onClick={() => { changeStep(index1 + 1) }} disabled={props.toggle||fatalError}>Next Step</button>
                 <div
                     style={{
                         visibility: fatalError ? "visible" : "hidden",

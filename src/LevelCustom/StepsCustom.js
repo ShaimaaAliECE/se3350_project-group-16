@@ -384,7 +384,21 @@ const StepsCustom = (props) => {
     }
 
     const restartLevel = () => {
-        window.location.reload();
+
+        setIndex1(-1);
+        setIndex2(0);
+        setIndex3(-1);
+        setStep('');
+        setData([]);
+        setToggleNum(false);
+        setColor(false);
+        setResult('');
+        setDone(false);
+        setIn(false);
+        setFatalError(false);
+        setErrors(0);
+      
+        props.resetLevel();
       };
 
     return (
@@ -394,7 +408,7 @@ const StepsCustom = (props) => {
             <div className="error-count">Current Errors: {errors}</div>
 
                 <button onClick={() => { changeStep(index3 - 1) }} disabled={index3 === 0? true : false}>Previous Step</button>
-                <button onClick={() => { changeStep(index3 + 1) }} disabled={props.toggle}>Next Step</button>
+                <button onClick={() => { changeStep(index3 + 1) }} disabled={props.toggle||fatalError}>Next Step</button>
 
                 <div
           style={{

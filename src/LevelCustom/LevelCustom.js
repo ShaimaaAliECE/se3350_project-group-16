@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDOM from "react-dom";
 
 import {mergeSortingAlgo} from  '../MergeSort';
 import './LevelCustom.css';
-import  Steps4 from './StepsCustom';
+import  StepsCustom from './StepsCustom';
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
 import Range from 'rc-slider';
 import Slider from 'rc-slider';
 import "rc-slider/assets/index.css";
 import Timer  from 'react-compound-timer'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 //const { createSliderWithTooltip } = Slider;
 //const Range = createSliderWithTooltip(Slider.Range);
@@ -24,6 +26,8 @@ const LevelCustom = (props)=>{
     const [toggleStep, setStep] = useState(true);
     const [value,setValue] = useState(5);
     const [range,setRange] = useState([10,20]);
+    const [menuSel, setMenu] = useState(false);
+    const timerRef = useRef(null);
 
     let currentTime = "";
 
@@ -48,6 +52,22 @@ const LevelCustom = (props)=>{
         setSort(info[0]);
        
     }
+
+
+  function restartLevel()
+  {
+    setGenerate(false);
+    setSort([]);
+    setUnSort([]);
+    setBranch([]);
+    setStep(true);
+    setGenerate(true);
+    setMenu(false);
+    timerRef.current.reset();
+    
+ 
+
+  }
 
 
     function  resetGenerate()
@@ -80,10 +100,21 @@ const LevelCustom = (props)=>{
   
     function loadTime(time)
     {
-    console.log(time);
+
   
     localStorage.setItem('custom',JSON.stringify(time))
     currentTime = time;
+    }
+
+    function menu(selection)
+    {
+   
+      if(selection.value=="Merge Sort")
+      {
+        setMenu(true);
+        setGenerate(false);
+  
+      }
     }
 
     return(
@@ -102,6 +133,12 @@ const LevelCustom = (props)=>{
                     <ToolTip />
                     </div>
                     <div>Time Spent on Level5  {getTimeFormat(JSON.parse(localStorage.getItem("5")))}</div>
+
+                    <div style={{flexDirection:"column", justifyContent:'center' }}>
+
+
+
+</div>
                     <img src={infoLogo} className='info-icon' data-tip="Custom Level: The data set size it up to you, select the correct steps for a merge sort" data-place="right"></img>
                     <ToolTip/>
                 </div>
@@ -109,6 +146,7 @@ const LevelCustom = (props)=>{
             </div>
                 
             <div style={{marginLeft: '400px' ,marginRight: '400px' }} className='slider'>
+            <Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
             <div style={{}}>Please enter the number of values you would like to practice with:</div>
                 <p>{value}</p>
                 <Slider  min={0} max={120} onChange={val => setValue(val)}
@@ -173,28 +211,39 @@ const LevelCustom = (props)=>{
       
             </div>
             <div className= "array-layout">
-                        <Timer initialTime={0} direction="forward" 
-                        checkpoints={[
-                            {
-                                time: 300000,
-                                callback: ()=>{props.goToNext(0)}
-                            }
-                        ]}>
-                               {({getTime})=>(
+            <Timer
+            initialTime={0}
+            direction="forward"
+            ref={timerRef}
+            checkpoints={[
+              {
+                time: 300000,
+                callback: () => {
+                  props.goToNext(0);
+                },
+              },
+            ]}
+          >
+               {({getTime})=>{
+
+                 
+                 
+                 return (
+
                   <React.Fragment>
                     <div style={{ marginRight: ".5rem" }}>Timer </div>
 
                     <Timer.Minutes />
                     <div>:</div>
                     <div>{loadTime(getTime())}</div>
+               
                     <Timer.Seconds />
                   </React.Fragment>
                 
-            )}
-                        
-                        </Timer>
+            )}}
+          </Timer>
                 </div>
-             <Steps4 contents={branch} toggle={toggleStep} resetGen={resetGenerate}></Steps4> 
+             <StepsCustom contents={branch} toggle={toggleStep} resetGen={resetGenerate}  resetLevel={restartLevel}></StepsCustom> 
         </div>
     )
 }

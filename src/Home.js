@@ -9,6 +9,7 @@ import Level5 from './Level5/Level5';
 import LevelCustom from './LevelCustom/LevelCustom';
 import AnalyticsLevel from './AnalyticsLevel/AnalyticsLevel';
 
+
 let analytics = [];
 
 const Home = ()=>
@@ -119,9 +120,9 @@ const Home = ()=>
           {hideStart&& <button onClick={()=>{nextLevel(1); setStart(false)}}>Click Here to Start</button>}
            <div name="body">
 
-
+ 
                         {levelOne&&<Level1 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
-                        {levelTwo&&<Level2  goToNext={nextLevel} recordTime={analyticsCallback}/>} 
+                        {levelTwo&&<Level2  goToNext={nextLevel} recordTime={analyticsCallback}/>}  
                         {levelThree&&<Level3 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelFour&&<Level4 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelFive&&<Level5 goToNext={nextLevel} recordTime={analyticsCallback}/>} 

@@ -128,7 +128,21 @@ const Steps3 = (props) => {
   };
 
   const restartLevel = () => {
-    window.location.reload();
+
+    setIndex1(-1);
+    setIndex2(0);
+    setIndex3(-1);
+    setStep('');
+    setData([]);
+    setToggleNum(false);
+    setColor(false);
+    setResult('');
+    setDone(false);
+    setIn(false);
+    setFatalError(false);
+    setErrors(0);
+  
+    props.resetLevel();
   };
 
   function checkMerge(merge) {
@@ -273,7 +287,7 @@ const Steps3 = (props) => {
           onClick={() => {
             changeStep(index3 + 1);
           }}
-          disabled={props.toggle}
+          disabled={props.toggle||fatalError}
         >
           Next Step
         </button>
@@ -296,7 +310,7 @@ const Steps3 = (props) => {
       <div className="steps-display">
         <div className="steps-body">
           {/* <div style={{width:'500px', marginRight:'15px'}}>{step}</div> */}
-          <div>
+          <div >
             <Numbers
               data={data}
               toggle={toggleNum}
