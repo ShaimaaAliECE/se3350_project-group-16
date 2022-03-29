@@ -14,6 +14,8 @@ const Level1 = (props) => {
   const [generate, setGenerate] = useState(false);
   const [toggleStep, setStep] = useState(true);
 
+  let currentTime = "";
+
   function startSort() {
     let nums = [];
 
@@ -34,6 +36,7 @@ const Level1 = (props) => {
     setSort([]);
     setUnSort([]);
     setStep(true);
+    props.recordTime(currentTime);
     props.goToNext(2);
   }
 
@@ -50,9 +53,8 @@ const Level1 = (props) => {
 function loadTime(time)
 {
   console.log(time);
-
   localStorage.setItem('1',JSON.stringify(time))
-
+  currentTime = time;
 }
 
   return (

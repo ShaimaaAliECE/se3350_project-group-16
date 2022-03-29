@@ -25,6 +25,8 @@ const LevelCustom = (props)=>{
     const [value,setValue] = useState(5);
     const [range,setRange] = useState([10,20]);
 
+    let currentTime = "";
+
     function startSort()
     {
         
@@ -54,7 +56,8 @@ const LevelCustom = (props)=>{
         setSort([]);
         setUnSort([]);
         setStep(true);
-        props.goToNext(5);
+        props.recordTime(currentTime);
+        props.goToNext(7);
     }
 
 
@@ -80,7 +83,7 @@ const LevelCustom = (props)=>{
     console.log(time);
   
     localStorage.setItem('custom',JSON.stringify(time))
-  
+    currentTime = time;
     }
 
     return(
