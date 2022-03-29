@@ -31,8 +31,6 @@ const Numbers = (props) => {
   const [indexHolder, setIndex] = useState([]);
   const [selectDis, setDis] = useState(false);
 
-  
-
   useEffect(() => {
     setMerge([]);
   }, [props.data]);
@@ -258,20 +256,19 @@ const Steps5 = (props) => {
   }
 
   const restartLevel = () => {
-
     setIndex1(-1);
     setIndex2(0);
     setIndex3(-1);
-    setStep('');
+    setStep("");
     setData([]);
     setToggleNum(false);
     setColor(false);
-    setResult('');
+    setResult("");
     setDone(false);
     setIn(false);
     setFatalError(false);
     setErrors(0);
-  
+
     props.resetLevel();
   };
 
@@ -291,7 +288,7 @@ const Steps5 = (props) => {
           onClick={() => {
             changeStep(index3 + 1);
           }}
-          disabled={props.toggle||fatalError}
+          disabled={props.toggle || fatalError}
         >
           Next Step
         </button>
@@ -301,12 +298,17 @@ const Steps5 = (props) => {
             display: "flex",
           }}
         >
-          <button onClick={() => {restartLevel()}}>Restart Level</button>
+          <button
+            onClick={() => {
+              restartLevel();
+            }}
+          >
+            Restart Level
+          </button>
           <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
           <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
           <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
           <button onClick={() => props.lvlSelect(4)}> Go to level 4</button>
-          
         </div>
       </div>
 

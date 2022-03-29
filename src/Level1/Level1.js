@@ -6,9 +6,8 @@ import Steps from "./Steps";
 import ToolTip from "react-tooltip";
 import infoLogo from "../Images/index.png";
 import Timer from "react-compound-timer";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const Level1 = (props) => {
   const [sort, setSort] = useState([]);
@@ -50,27 +49,22 @@ const Level1 = (props) => {
     setStep(false);
   }
 
-  function levelSelect(select){
-    props.goToNext(select)
-}
-
-function loadTime(time)
-{
-
-  localStorage.setItem('1',JSON.stringify(time))
-  currentTime = time;
-}
-
-function menu(selection)
-{
-  console.log(selection);
-  if(selection.value=="Merge Sort")
-  {
-    setMenu(true);
-    setGenerate(false);
-
+  function levelSelect(select) {
+    props.goToNext(select);
   }
-}
+
+  function loadTime(time) {
+    localStorage.setItem("1", JSON.stringify(time));
+    currentTime = time;
+  }
+
+  function menu(selection) {
+    console.log(selection);
+    if (selection.value == "Merge Sort") {
+      setMenu(true);
+      setGenerate(false);
+    }
+  }
 
   return (
     <div className="level-container">
@@ -86,10 +80,13 @@ function menu(selection)
           <ToolTip />
         </div>
 
-        <div style={{flexDirection:"column", justifyContent:'center' }}>
-
-        <Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
-
+        <div style={{ flexDirection: "column", justifyContent: "center" }}>
+          <Dropdown
+            options={["Merge Sort", "Bubble Sort", "Selection Sort"]}
+            onChange={menu}
+            placeholder="Select an Algorithm"
+            disabled={menuSel}
+          />
         </div>
 
         <button
@@ -148,16 +145,15 @@ function menu(selection)
               },
             ]}
           >
-            {({getTime})=>(
-                  <React.Fragment>
-                    <div style={{ marginRight: ".5rem" }}>Timer </div>
+            {({ getTime }) => (
+              <React.Fragment>
+                <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                    <Timer.Minutes />
-                    <div>:</div>
-                    <div>{loadTime(getTime())}</div>
-                    <Timer.Seconds />
-                  </React.Fragment>
-                
+                <Timer.Minutes />
+                <div>:</div>
+                <div>{loadTime(getTime())}</div>
+                <Timer.Seconds />
+              </React.Fragment>
             )}
           </Timer>
         </div>

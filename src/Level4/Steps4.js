@@ -128,22 +128,21 @@ const Steps4 = (props) => {
       setFatalError(true);
     }
   };
- 
-  const restartLevel = () => {
 
+  const restartLevel = () => {
     setIndex1(-1);
     setIndex2(0);
     setIndex3(-1);
-    setStep('');
+    setStep("");
     setData([]);
     setToggleNum(false);
     setColor(false);
-    setResult('');
+    setResult("");
     setDone(false);
     setIn(false);
     setFatalError(false);
     setErrors(0);
-  
+
     props.resetLevel();
   };
 
@@ -276,7 +275,7 @@ const Steps4 = (props) => {
   return (
     <div className="steps-header">
       <div className="steps-body">
-      <div className="error-count">Current Errors: {errors}</div>
+        <div className="error-count">Current Errors: {errors}</div>
         <button
           onClick={() => {
             changeStep(index3 - 1);
@@ -289,7 +288,7 @@ const Steps4 = (props) => {
           onClick={() => {
             changeStep(index3 + 1);
           }}
-          disabled={props.toggle||fatalError}
+          disabled={props.toggle || fatalError}
         >
           Next Step
         </button>
@@ -299,11 +298,16 @@ const Steps4 = (props) => {
             display: "flex",
           }}
         >
-          <button onClick={() => {restartLevel()}}>Restart Level</button>
+          <button
+            onClick={() => {
+              restartLevel();
+            }}
+          >
+            Restart Level
+          </button>
           <button onClick={() => props.lvlSelect(1)}> Go to level 1</button>
           <button onClick={() => props.lvlSelect(2)}> Go to level 2</button>
           <button onClick={() => props.lvlSelect(3)}> Go to level 3</button>
-          
         </div>
       </div>
 

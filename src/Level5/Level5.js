@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
 
-import {mergeSortingAlgo} from  '../MergeSort';
-import './Level5.css';
+import { mergeSortingAlgo } from "../MergeSort";
+import "./Level5.css";
 
-import ToolTip from 'react-tooltip';
-import infoLogo from '../Images/index.png';
-import  Steps5 from './Steps5';
-import Timer  from 'react-compound-timer'
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import ToolTip from "react-tooltip";
+import infoLogo from "../Images/index.png";
+import Steps5 from "./Steps5";
+import Timer from "react-compound-timer";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const Level5 = (props) => {
   const [sort, setSort] = useState([]);
@@ -45,10 +45,8 @@ const Level5 = (props) => {
     props.goToNext(6);
   }
 
-  function levelSelect(select){
-
-  
-      props.goToNext(select)
+  function levelSelect(select) {
+    props.goToNext(select);
   }
 
   function intitiate() {
@@ -57,8 +55,7 @@ const Level5 = (props) => {
     setStep(false);
   }
 
-  function restartLevel()
-  {
+  function restartLevel() {
     setGenerate(false);
     setSort([]);
     setUnSort([]);
@@ -67,43 +64,31 @@ const Level5 = (props) => {
     setGenerate(true);
     setMenu(false);
     timerRef.current.reset();
-    
- 
-
   }
 
-  function getTimeFormat(time)
-  {
-    let minutes = time/60000;
-    let seconds = (time%60000)/1000;
+  function getTimeFormat(time) {
+    let minutes = time / 60000;
+    let seconds = (time % 60000) / 1000;
 
-    return `${parseInt(minutes)}:${parseInt(seconds)}`
-
+    return `${parseInt(minutes)}:${parseInt(seconds)}`;
   }
 
-  function loadTime(time)
-  {
- 
-
-  localStorage.setItem('5',JSON.stringify(time))
-  currentTime = time;
+  function loadTime(time) {
+    localStorage.setItem("5", JSON.stringify(time));
+    currentTime = time;
   }
 
-  function menu(selection)
-  {
-    
-    if(selection.value=="Merge Sort")
-    {
+  function menu(selection) {
+    if (selection.value == "Merge Sort") {
       setMenu(true);
       setGenerate(false);
-
     }
   }
 
   return (
     <div className="level-container">
       <div className="header">
-      <div className="level-info">
+        <div className="level-info">
           <div>Level 5</div>
           <img
             src={infoLogo}
@@ -114,14 +99,19 @@ const Level5 = (props) => {
           <ToolTip />
         </div>
 
-        <div>Time Spent on Level4  {getTimeFormat(JSON.parse(localStorage.getItem("4")))}</div>
+        <div>
+          Time Spent on Level4{" "}
+          {getTimeFormat(JSON.parse(localStorage.getItem("4")))}
+        </div>
 
-
-        <div style={{flexDirection:"column", justifyContent:'center' }}>
-
-<Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
-
-</div>
+        <div style={{ flexDirection: "column", justifyContent: "center" }}>
+          <Dropdown
+            options={["Merge Sort", "Bubble Sort", "Selection Sort"]}
+            onChange={menu}
+            placeholder="Select an Algorithm"
+            disabled={menuSel}
+          />
+        </div>
         <button
           onClick={() => {
             intitiate();
@@ -163,13 +153,10 @@ const Level5 = (props) => {
               );
             })}
           </div>
+        </div>
 
-             
-      
-            </div>
-
-            <div className= "array-layout">
-            <Timer
+        <div className="array-layout">
+          <Timer
             initialTime={0}
             direction="forward"
             ref={timerRef}
@@ -182,36 +169,30 @@ const Level5 = (props) => {
               },
             ]}
           >
-               {({getTime})=>{
+            {({ getTime }) => {
+              return (
+                <React.Fragment>
+                  <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                 
-                 
-                 return (
+                  <Timer.Minutes />
+                  <div>:</div>
+                  <div>{loadTime(getTime())}</div>
 
-                  <React.Fragment>
-                    <div style={{ marginRight: ".5rem" }}>Timer </div>
-
-                    <Timer.Minutes />
-                    <div>:</div>
-                    <div>{loadTime(getTime())}</div>
-               
-                    <Timer.Seconds />
-                  </React.Fragment>
-                
-            )}}
+                  <Timer.Seconds />
+                </React.Fragment>
+              );
+            }}
           </Timer>
-                </div>
-            <Steps5
-        contents={branch}
-        toggle={toggleStep}
-        resetGen={resetGenerate}
-        lvlSelect={levelSelect}
-        resetLevel={restartLevel}
-      ></Steps5> 
         </div>
+        <Steps5
+          contents={branch}
+          toggle={toggleStep}
+          resetGen={resetGenerate}
+          lvlSelect={levelSelect}
+          resetLevel={restartLevel}
+        ></Steps5>
       </div>
-      
-   
+    </div>
   );
 };
 

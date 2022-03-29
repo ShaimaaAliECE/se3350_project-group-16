@@ -3,11 +3,11 @@ import React, { useState, useRef } from "react";
 import { mergeSortingAlgo } from "../MergeSort";
 import "./Level4.css";
 import Steps4 from "./Steps4";
-import ToolTip from 'react-tooltip';
-import infoLogo from '../Images/index.png';
-import Timer  from 'react-compound-timer';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import ToolTip from "react-tooltip";
+import infoLogo from "../Images/index.png";
+import Timer from "react-compound-timer";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const Level4 = (props) => {
   const [sort, setSort] = useState([]);
@@ -50,8 +50,7 @@ const Level4 = (props) => {
     setStep(false);
   }
 
-  function restartLevel()
-  {
+  function restartLevel() {
     setGenerate(false);
     setSort([]);
     setUnSort([]);
@@ -60,69 +59,67 @@ const Level4 = (props) => {
     setGenerate(true);
     setMenu(false);
     timerRef.current.reset();
-    
- 
-
   }
 
-  function levelSelect(select){
-    
-    props.goToNext(select)
-}
-
-function getTimeFormat(time)
-{
-  let minutes = time/60000;
-  let seconds = (time%60000)/1000;
-
-  return `${parseInt(minutes)}:${parseInt(seconds)}`
-
-}
-
-function loadTime(time)
-{
-
-
-localStorage.setItem('4',JSON.stringify(time))
-currentTime = time;
-}
-
-function menu(selection)
-{
-  
-  if(selection.value=="Merge Sort")
-  {
-    setMenu(true);
-    setGenerate(false);
-
+  function levelSelect(select) {
+    props.goToNext(select);
   }
-}
+
+  function getTimeFormat(time) {
+    let minutes = time / 60000;
+    let seconds = (time % 60000) / 1000;
+
+    return `${parseInt(minutes)}:${parseInt(seconds)}`;
+  }
+
+  function loadTime(time) {
+    localStorage.setItem("4", JSON.stringify(time));
+    currentTime = time;
+  }
+
+  function menu(selection) {
+    if (selection.value == "Merge Sort") {
+      setMenu(true);
+      setGenerate(false);
+    }
+  }
 
   return (
     <div className="level-container">
       <div className="header">
         <div className="level-info">
-        <div className="level-info">
-          <div>Level 4</div>
+          <div className="level-info">
+            <div>Level 4</div>
+            <img
+              src={infoLogo}
+              className="info-icon"
+              data-tip="Level 4: The dataset has been doubled in size, can you still sort it?"
+              data-place="right"
+            ></img>
+            <ToolTip />
+          </div>
+
           <img
             src={infoLogo}
             className="info-icon"
-            data-tip="Level 4: The dataset has been doubled in size, can you still sort it?"
+            data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort"
             data-place="right"
           ></img>
           <ToolTip />
         </div>
-         
-          <img src={infoLogo} className='info-icon' data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort" data-place="right"></img>
-          <ToolTip/>
+        <div>
+          Time Spent on Level3{" "}
+          {getTimeFormat(JSON.parse(localStorage.getItem("3")))}
         </div>
-        <div>Time Spent on Level3  {getTimeFormat(JSON.parse(localStorage.getItem("3")))}</div>
 
-        <div style={{flexDirection:"column", justifyContent:'center' }}>
-
-<Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
-
-</div>
+        <div style={{ flexDirection: "column", justifyContent: "center" }}>
+          <Dropdown
+            options={["Merge Sort", "Bubble Sort", "Selection Sort"]}
+            onChange={menu}
+            placeholder="Select an Algorithm"
+            disabled={menuSel}
+          />
+        </div>
         <button
           onClick={() => {
             intitiate();
@@ -166,8 +163,8 @@ function menu(selection)
           </div>
         </div>
 
-        <div className= "array-layout">
-        <Timer
+        <div className="array-layout">
+          <Timer
             initialTime={0}
             direction="forward"
             ref={timerRef}
@@ -180,25 +177,21 @@ function menu(selection)
               },
             ]}
           >
-               {({getTime})=>{
+            {({ getTime }) => {
+              return (
+                <React.Fragment>
+                  <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                 
-                 
-                 return (
+                  <Timer.Minutes />
+                  <div>:</div>
+                  <div>{loadTime(getTime())}</div>
 
-                  <React.Fragment>
-                    <div style={{ marginRight: ".5rem" }}>Timer </div>
-
-                    <Timer.Minutes />
-                    <div>:</div>
-                    <div>{loadTime(getTime())}</div>
-               
-                    <Timer.Seconds />
-                  </React.Fragment>
-                
-            )}}
+                  <Timer.Seconds />
+                </React.Fragment>
+              );
+            }}
           </Timer>
-                </div>
+        </div>
       </div>
       <Steps4
         contents={branch}

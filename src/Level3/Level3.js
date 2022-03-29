@@ -6,8 +6,8 @@ import Steps3 from "./Steps3";
 import ToolTip from "react-tooltip";
 import infoLogo from "../Images/index.png";
 import Timer from "react-compound-timer";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const Level3 = (props) => {
   const [sort, setSort] = useState([]);
@@ -44,9 +44,7 @@ const Level3 = (props) => {
     props.goToNext(1);
   }
 
-
-  function restartLevel()
-  {
+  function restartLevel() {
     setGenerate(false);
     setSort([]);
     setUnSort([]);
@@ -55,9 +53,6 @@ const Level3 = (props) => {
     setGenerate(true);
     setMenu(false);
     timerRef.current.reset();
-    
- 
-
   }
 
   function intitiate() {
@@ -66,53 +61,44 @@ const Level3 = (props) => {
     setStep(false);
   }
 
-  function levelSelect(select){
-    props.goToNext(select)
-}
-
-function getTimeFormat(time)
-{
-  let minutes = time/60000;
-  let seconds = (time%60000)/1000;
-
-  return `${parseInt(minutes)}:${parseInt(seconds)}`
-
-}
-
-function loadTime(time)
-{
-
-
-localStorage.setItem('3',JSON.stringify(time))
-currentTime = time;
-}
-
-function menu(selection)
-{
- 
-  if(selection.value=="Merge Sort")
-  {
-    setMenu(true);
-    setGenerate(false);
-
+  function levelSelect(select) {
+    props.goToNext(select);
   }
-}
+
+  function getTimeFormat(time) {
+    let minutes = time / 60000;
+    let seconds = (time % 60000) / 1000;
+
+    return `${parseInt(minutes)}:${parseInt(seconds)}`;
+  }
+
+  function loadTime(time) {
+    localStorage.setItem("3", JSON.stringify(time));
+    currentTime = time;
+  }
+
+  function menu(selection) {
+    if (selection.value == "Merge Sort") {
+      setMenu(true);
+      setGenerate(false);
+    }
+  }
 
   return (
     <div className="level-container">
       <div className="header">
         <div className="level-info">
-        <div className="level-info">
-          <div>Level 3</div>
-          <img
-            src={infoLogo}
-            className="info-icon"
-            data-tip="Level 3: Now let's see if you can do it without any pointers. Parameters of execution and data are the same"
-            data-place="right"
-          ></img>
-          <ToolTip />
-        </div>
-         
+          <div className="level-info">
+            <div>Level 3</div>
+            <img
+              src={infoLogo}
+              className="info-icon"
+              data-tip="Level 3: Now let's see if you can do it without any pointers. Parameters of execution and data are the same"
+              data-place="right"
+            ></img>
+            <ToolTip />
+          </div>
+
           <img
             src={infoLogo}
             className="info-icon"
@@ -121,13 +107,19 @@ function menu(selection)
           ></img>
           <ToolTip />
         </div>
-        <div>Time Spent on Level2  {getTimeFormat(JSON.parse(localStorage.getItem("2")))}</div>
+        <div>
+          Time Spent on Level2{" "}
+          {getTimeFormat(JSON.parse(localStorage.getItem("2")))}
+        </div>
 
-        <div style={{flexDirection:"column", justifyContent:'center' }}>
-
-<Dropdown options={["Merge Sort", "Bubble Sort", "Selection Sort"]} onChange={menu} placeholder="Select an Algorithm" disabled={menuSel} />
-
-</div>
+        <div style={{ flexDirection: "column", justifyContent: "center" }}>
+          <Dropdown
+            options={["Merge Sort", "Bubble Sort", "Selection Sort"]}
+            onChange={menu}
+            placeholder="Select an Algorithm"
+            disabled={menuSel}
+          />
+        </div>
         <button
           onClick={() => {
             intitiate();
@@ -172,7 +164,7 @@ function menu(selection)
         </div>
 
         <div className="array-layout">
-        <Timer
+          <Timer
             initialTime={0}
             direction="forward"
             ref={timerRef}
@@ -185,23 +177,19 @@ function menu(selection)
               },
             ]}
           >
-               {({getTime})=>{
+            {({ getTime }) => {
+              return (
+                <React.Fragment>
+                  <div style={{ marginRight: ".5rem" }}>Timer </div>
 
-                 
-                 
-                 return (
+                  <Timer.Minutes />
+                  <div>:</div>
+                  <div>{loadTime(getTime())}</div>
 
-                  <React.Fragment>
-                    <div style={{ marginRight: ".5rem" }}>Timer </div>
-
-                    <Timer.Minutes />
-                    <div>:</div>
-                    <div>{loadTime(getTime())}</div>
-               
-                    <Timer.Seconds />
-                  </React.Fragment>
-                
-            )}}
+                  <Timer.Seconds />
+                </React.Fragment>
+              );
+            }}
           </Timer>
         </div>
       </div>
