@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from "react-dom";
 
-import './LevelCustom.css';
+import './AnalyticsLevel.css';
 import ToolTip from 'react-tooltip';
 import infoLogo from '../Images/index.png';
 import "rc-slider/assets/index.css";
-import Timer  from 'react-compound-timer'
 
 const AnalyticsLevel = (props)=>{
 
@@ -14,24 +13,35 @@ const AnalyticsLevel = (props)=>{
 
             <div className="header">
                 <div className="level-info">
-                    <div>Admin Performance Review</div>
+                    <div>Admin Performance Review!</div>
                     <img src={infoLogo} className='info-icon' data-tip="" data-place="right"></img>
                     <ToolTip/>
                 </div>
             </div>
                 
-            <div className = "array-container">
-
-                <div className="array-layout">
-                   
-                   <div className='array-nums'>
-                    </div>
-                </div>
-      
+            <div className='header'>
+                User's Level 1 completion time: 
             </div>
-            <div className= "array-layout">
-
-                </div>
+            <div></div>
+            <div className='header'>
+                User's Level 2 completion time: 
+            </div>
+            <div></div>
+            <div className='header'>
+                User's Level 3 completion time: 
+            </div>
+            <div></div>
+            <div className='header'>
+                User's Level 4 completion time: 
+            </div>
+            <div></div>
+            <div className='header'>
+                User's Level 5 completion time: 
+            </div>
+            <div></div>
+            <div className='header'>
+                User's Custom Level completion time: 
+            </div>
         </div>
     )
 }

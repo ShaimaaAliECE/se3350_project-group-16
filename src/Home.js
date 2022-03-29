@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AnalyticsLevel from './AnalyticsLevel/AnalyticsLevel';
 
 import './Home.css';
 import Level1 from './Level1/Level1';
@@ -87,7 +88,9 @@ const Home = ()=>
                          {levelThree&&<Level3 goToNext={nextLevel}/>} */}
                          {/* {true&&<Level4 goToNext={nextLevel}/>} */}
                          {/*true&&<Level5 goToNext={nextLevel}/>*/}
-                         {true&&<LevelCustom gotToNext={nextLevel}/>}
+                         {/*true&&<LevelCustom gotToNext={nextLevel}/>*/}
+                         {true&&<AnalyticsLevel goToNext={nextLevel}/>}
+
                          
                      
            </div>
