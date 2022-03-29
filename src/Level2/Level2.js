@@ -71,7 +71,17 @@ const Level2 = (props) => {
   return (
     <div className="level-container">
       <div className="header">
-        <div>Level 2</div>
+      <div className="level-info">
+          <div>Level 2</div>
+          <img
+            src={infoLogo}
+            className="info-icon"
+            data-tip="Level 2: Now you try, choose the appropriate steps for a merge sort. See instruction for more"
+            data-place="right"
+          ></img>
+          <ToolTip />
+        </div>
+        
         <div>Time Spent on Level1  {getTimeFormat(JSON.parse(localStorage.getItem("1")))}</div>
         <button
           onClick={() => {

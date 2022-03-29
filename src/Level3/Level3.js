@@ -71,7 +71,16 @@ currentTime = time;
     <div className="level-container">
       <div className="header">
         <div className="level-info">
+        <div className="level-info">
           <div>Level 3</div>
+          <img
+            src={infoLogo}
+            className="info-icon"
+            data-tip="Level 3: Now let's see if you can do it without any pointers. Parameters of execution and data are the same"
+            data-place="right"
+          ></img>
+          <ToolTip />
+        </div>
          
           <img
             src={infoLogo}

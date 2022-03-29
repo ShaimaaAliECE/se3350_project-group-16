@@ -73,7 +73,17 @@ const Level5 = (props) => {
   return (
     <div className="level-container">
       <div className="header">
-        <div>Level 5</div>
+      <div className="level-info">
+          <div>Level 5</div>
+          <img
+            src={infoLogo}
+            className="info-icon"
+            data-tip="Level 5: Let's take it up another notch and see if you can sort 50 numbers, conditions are the same"
+            data-place="right"
+          ></img>
+          <ToolTip />
+        </div>
+
         <div>Time Spent on Level4  {getTimeFormat(JSON.parse(localStorage.getItem("4")))}</div>
         <button
           onClick={() => {

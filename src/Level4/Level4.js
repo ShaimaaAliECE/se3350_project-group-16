@@ -72,7 +72,16 @@ currentTime = time;
     <div className="level-container">
       <div className="header">
         <div className="level-info">
+        <div className="level-info">
           <div>Level 4</div>
+          <img
+            src={infoLogo}
+            className="info-icon"
+            data-tip="Level 4: The dataset has been doubled in size, can you still sort it?"
+            data-place="right"
+          ></img>
+          <ToolTip />
+        </div>
          
           <img src={infoLogo} className='info-icon' data-tip="Level 4: The data has doubled in size. Select the correct steps fo a merge sort" data-place="right"></img>
           <ToolTip/>
