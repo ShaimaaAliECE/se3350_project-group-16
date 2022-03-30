@@ -88,7 +88,7 @@ const Numbers = (props) => {
             </div>
           );
         } else if (index === 0) {
-          console.log("hi");
+   
 
           return (
             <div key={nextId()} className="nums">

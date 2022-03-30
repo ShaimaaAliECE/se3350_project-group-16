@@ -20,7 +20,7 @@ const LevelCustom = (props) => {
   const [sort, setSort] = useState([]);
   const [unsort, setUnSort] = useState([]);
   const [branch, setBranch] = useState([]);
-  const [generate, setGenerate] = useState(false);
+  const [generate, setGenerate] = useState(true);
   const [toggleStep, setStep] = useState(true);
   const [value, setValue] = useState(5);
   const [range, setRange] = useState([10, 20]);
@@ -69,6 +69,12 @@ const LevelCustom = (props) => {
     startSort();
     setGenerate(true);
     setStep(false);
+  }
+
+  function levelSelect(select) {
+
+    console.log("hi")
+    props.goToNext(select);
   }
 
   function getTimeFormat(time) {
@@ -267,6 +273,7 @@ const LevelCustom = (props) => {
         toggle={toggleStep}
         resetGen={resetGenerate}
         resetLevel={restartLevel}
+        lvlSelect={levelSelect}
       ></StepsCustom>
     </div>
   );

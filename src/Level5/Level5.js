@@ -14,7 +14,7 @@ const Level5 = (props) => {
   const [sort, setSort] = useState([]);
   const [unsort, setUnSort] = useState([]);
   const [branch, setBranch] = useState([]);
-  const [generate, setGenerate] = useState(false);
+  const [generate, setGenerate] = useState(true);
   const [toggleStep, setStep] = useState(true);
   const [menuSel, setMenu] = useState(false);
   const timerRef = useRef(null);

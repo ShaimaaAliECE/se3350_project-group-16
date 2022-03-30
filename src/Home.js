@@ -44,6 +44,8 @@ const Home = ()=>
                 setFour(false);
                 setFive(false);
                 setStart(true);
+                setCustom(false);
+                setAnalytics(false);
                 break;
 
             case 1:
@@ -52,6 +54,8 @@ const Home = ()=>
                 setThree(false)
                 setFour(false);
                 setFive(false);
+                setCustom(false);
+                setAnalytics(false);
                 break;
 
             case 2:
@@ -60,6 +64,8 @@ const Home = ()=>
                 setThree(false)
                 setFour(false);
                 setFive(false);
+                setCustom(false);
+                setAnalytics(false);
                 break;
             case 3:
                 setOne(false)
@@ -67,6 +73,8 @@ const Home = ()=>
                 setThree(true)
                 setFour(false);
                 setFive(false);
+                setCustom(false);
+                setAnalytics(false);
                 break;
             case 4:
                 setOne(false)
@@ -74,6 +82,8 @@ const Home = ()=>
                 setThree(false)
                 setFour(true);
                 setFive(false);
+                setCustom(false);
+                setAnalytics(false);
                 break;
             case 5:
                 setOne(false)
@@ -81,6 +91,8 @@ const Home = ()=>
                 setThree(false)
                 setFour(false);
                 setFive(true);
+                setCustom(false);
+                setAnalytics(false);
                 break;
             case 6:
                 setOne(false)
@@ -89,6 +101,7 @@ const Home = ()=>
                 setFour(false);
                 setFive(false); 
                 setCustom(true);
+                setAnalytics(false);
                 break;
             case 7:
                 setOne(false)
@@ -126,7 +139,7 @@ const Home = ()=>
                         {levelThree&&<Level3 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelFour&&<Level4 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelFive&&<Level5 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
-                        {levelCustom&&<LevelCustom gotToNext={nextLevel} recordTime={analyticsCallback}/>}
+                        {levelCustom&&<LevelCustom goToNext={nextLevel} recordTime={analyticsCallback}/>}
                         {levelAnalystics&&<AnalyticsLevel goToNext={nextLevel} levelData={analytics}/>}
            </div>
            
