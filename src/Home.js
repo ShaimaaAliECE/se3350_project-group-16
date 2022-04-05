@@ -21,6 +21,7 @@ const Home = ()=>
     const [levelFive, setFive] = useState(false);
     const [levelCustom, setCustom] = useState(false);
     const [levelAnalystics , setAnalytics] = useState(false);
+    const [analyticsMemory, setMemory] = useState([]);
 
     const [hideStart, setStart] = useState(true);
 
@@ -28,6 +29,9 @@ const Home = ()=>
         console.log(">> Level Finsihed In : " + levelTimeData);
         analytics.push(levelTimeData);
         console.log("Confirm : " + analytics[0]);
+        let temp = analyticsMemory;
+        temp.push(levelTimeData);
+        setMemory([...temp]);
     }
 
     function nextLevel(level)
@@ -140,7 +144,7 @@ const Home = ()=>
                         {levelFour&&<Level4 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelFive&&<Level5 goToNext={nextLevel} recordTime={analyticsCallback}/>} 
                         {levelCustom&&<LevelCustom goToNext={nextLevel} recordTime={analyticsCallback}/>}
-                        {levelAnalystics&&<AnalyticsLevel goToNext={nextLevel} levelData={analytics}/>}
+                        {levelAnalystics&&<AnalyticsLevel goToNext={nextLevel} levelData={analyticsMemory}/>}
            </div>
            
         </div>
